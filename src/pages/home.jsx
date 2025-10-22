@@ -127,6 +127,62 @@ export default function Home() {
       cursor: "pointer",
       transition: "color 0.3s",
     },
+infoCardSection: {
+  backgroundColor: "#121212",
+  padding: "0",
+  width: "100%",
+},
+
+infoCardContainer: {
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  width: "100%",
+  height: "400px",           // adjust height as needed
+},
+
+infoCard: {
+  position: "relative",
+  borderRadius: "0px",       // makes it fill cleanly
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  overflow: "hidden",
+  textDecoration: "none",
+  transition: "transform 0.4s ease, filter 0.4s ease",
+  display: "flex",
+  alignItems: "flex-end",
+},
+
+overlay: {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  background: "linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0))",
+  transition: "opacity 0.4s ease",
+},
+
+infoCardText: {
+  position: "relative",
+  zIndex: 2,
+  color: "#fff",
+  padding: "20px",
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+},
+
+infoCardTitle: {
+  fontSize: "18px",
+  fontWeight: "bold",
+  margin: 0,
+},
+
+infoCardLink: {
+  fontSize: "20px",
+  transition: "transform 0.3s ease",
+},
+
     responsive: `
       @media (max-width: 768px) {
         .ferrari-grid {
@@ -196,19 +252,34 @@ export default function Home() {
           </div>
         </section>
 
-        <section style={styles.section}>
-          <div style={styles.threeButtons}>
-            <button className="sleek-button" style={styles.sleekButton}>
-              Our Team
-            </button>
-            <button className="sleek-button" style={styles.sleekButton}>
-              Our Achievements
-            </button>
-            <button className="sleek-button" style={styles.sleekButton}>
-              Outreach
-            </button>
+        <section style={styles.infoCardSection}>
+          <div className="info-card-container" style={styles.infoCardContainer}>
+            <a href="#team" className="info-card" style={{ ...styles.infoCard, backgroundImage: "url('/images/team.jpg')" }}>
+              <div className="overlay" style={styles.overlay}></div>
+              <div style={styles.infoCardText}>
+                <h3 style={styles.infoCardTitle}>Our Team</h3>
+                <span className="info-card-link" style={styles.infoCardLink}>→</span>
+              </div>
+            </a>
+
+            <a href="#achievements" className="info-card" style={{ ...styles.infoCard, backgroundImage: "url('/images/achievements.jpg')" }}>
+              <div className="overlay" style={styles.overlay}></div>
+              <div style={styles.infoCardText}>
+                <h3 style={styles.infoCardTitle}>Our Achievements</h3>
+                <span className="info-card-link" style={styles.infoCardLink}>→</span>
+              </div>
+            </a>
+
+            <a href="#outreach" className="info-card" style={{ ...styles.infoCard, backgroundImage: "url('/images/outreach.jpg')" }}>
+              <div className="overlay" style={styles.overlay}></div>
+              <div style={styles.infoCardText}>
+                <h3 style={styles.infoCardTitle}>Outreach</h3>
+                <span className="info-card-link" style={styles.infoCardLink}>→</span>
+              </div>
+            </a>
           </div>
         </section>
+
 
         <footer style={styles.footer}>
           <div>Follow Us</div>
