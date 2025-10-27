@@ -8,36 +8,35 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <header className="bg-[#1c1c1c] border-b border-gray-800 text-white z-50 relative">
-      <div className="w-full flex justify-between items-center px-8 py-4">
-        {/* ✅ Left Logo */}
+    <header className="fixed top-0 left-0 w-full bg-[#1c1c1c] border-b border-gray-800 text-white z-1000">
+      <div className="w-full flex justify-between items-center px-8 py-6 md:py-8">
+        {/* ✅ Logo */}
         <div>
-          <Link href="/" className="font-bold text-lg hover:text-gray-300">
+          <Link href="/" className="font-bold text-xl hover:text-gray-300">
             AAV - LOGO
           </Link>
         </div>
 
-        {/* ✅ Right Nav Links */}
-        <nav className="hidden md:flex space-x-8 text-sm relative">
+        {/* ✅ Desktop Nav */}
+        <nav className="hidden md:flex space-x-8 text-base relative">
           <Link href="/" className="hover:text-gray-300">Home</Link>
 
           {/* About Dropdown */}
           <div className="relative group">
             <button className="hover:text-gray-300">About ▼</button>
-            <div className="absolute hidden group-hover:block bg-[#1c1c1c] border border-gray-700 mt-2 rounded-md w-40">
+            <div className="absolute hidden group-hover:block bg-[#1c1c1c] border border-gray-700 mt-2 rounded-md w-40 z-2000">
               <Link href="/about/team" className="block px-4 py-2 hover:bg-gray-800">Our Team</Link>
               <Link href="/about/achievements" className="block px-4 py-2 hover:bg-gray-800">Achievements</Link>
               <Link href="/about/news" className="block px-4 py-2 hover:bg-gray-800">News</Link>
             </div>
           </div>
 
-          {/* ASV (No Dropdown yet) */}
           <Link href="/asv" className="hover:text-gray-300">ASV</Link>
 
           {/* UAV Dropdown */}
           <div className="relative group">
             <button className="hover:text-gray-300">UAV ▼</button>
-            <div className="absolute hidden group-hover:block bg-[#1c1c1c] border border-gray-700 mt-2 rounded-md w-40">
+            <div className="absolute hidden group-hover:block bg-[#1c1c1c] border border-gray-700 mt-2 rounded-md w-40 z-2000">
               <Link href="/uav/1" className="block px-4 py-2 hover:bg-gray-800">UAV 1.0</Link>
               <Link href="/uav/2" className="block px-4 py-2 hover:bg-gray-800">UAV 2.0</Link>
             </div>
@@ -46,7 +45,7 @@ export default function Navbar() {
           {/* Competitions Dropdown */}
           <div className="relative group">
             <button className="hover:text-gray-300">Competitions ▼</button>
-            <div className="absolute hidden group-hover:block bg-[#1c1c1c] border border-gray-700 mt-2 rounded-md w-40">
+            <div className="absolute hidden group-hover:block bg-[#1c1c1c] border border-gray-700 mt-2 rounded-md w-40 z-2000">
               <Link href="/competitions/robosub" className="block px-4 py-2 hover:bg-gray-800">RoboSub</Link>
               <Link href="/competitions/robotx" className="block px-4 py-2 hover:bg-gray-800">RobotX</Link>
             </div>
@@ -75,7 +74,7 @@ export default function Navbar() {
 
       {/* ✅ Mobile Dropdown Menu */}
       {isMenuOpen && (
-        <nav className="md:hidden px-8 pb-4 flex flex-col space-y-3 text-sm text-right bg-[#1c1c1c] border-t border-gray-800">
+        <nav className="md:hidden px-8 pb-4 flex flex-col space-y-3 text-sm text-right bg-[#1c1c1c] border-t border-gray-800 z-1500">
           <Link href="/" className="hover:text-gray-300">Home</Link>
 
           {/* Mobile About Dropdown */}
@@ -142,4 +141,3 @@ export default function Navbar() {
     </header>
   );
 }
-
