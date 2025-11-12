@@ -1,79 +1,99 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 
-export default function ContactForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+export function ContactForm() {
+  const [focusedField, setFocusedField] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ name, email, message });
-    alert("✅ Thank you! Your message has been sent.");
-    setName("");
-    setEmail("");
-    setMessage("");
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    await new Promise((resolve) => setTimeout(resolve, 2000)) // Simulate submission
+    setIsSubmitting(false)
+    setIsSuccess(true)
+    setTimeout(() => setIsSuccess(false), 3000)
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Name */}
-      <div>
-        <label htmlFor="name" className="block text-sm text-gray-300 mb-1">
-          Name
-        </label>
-        <input
-          id="name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          placeholder="Your name"
-          className="w-full p-3 rounded-md bg-[#0f0f0f] border border-[#333] focus:outline-none focus:ring-2 focus:ring-red-500"
-        />
-      </div>
+    <div className="flex justify-center items-center min-h-screen bg-black p-8">
+      <div className="w-full max-w-lg p-8 bg-zinc-800 rounded-xl shadow-lg space-y-6">
+        <h2 className="text-4xl font-semibold text-white text-center">Send Us a Message</h2>
+        <p className="text-gray-400 text-center mb-6">
+          Have a question or want to collaborate? We&apos;d love to hear from you. Fill out the form and we’ll respond within 24 hours.
+        </p>
 
-      {/* Email */}
-      <div>
-        <label htmlFor="email" className="block text-sm text-gray-300 mb-1">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          placeholder="your@email.com"
-          className="w-full p-3 rounded-md bg-[#0f0f0f] border border-[#333] focus:outline-none focus:ring-2 focus:ring-red-500"
-        />
-      </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Name Field */}
+          <div className="space-y-2">
+            <label htmlFor="name" className="text-white font-medium">Name *</label>
+            <input
+              id="name"
+              placeholder="Your full name"
+              onFocus={() => setFocusedField("name")}
+              onBlur={() => setFocusedField(null)}
+              className="w-full px-4 py-2 border-2 border-gray-700 text-white bg-gray-800 placeholder-gray-500 focus:outline-none focus:border-orange-500"
+            />
+            {focusedField === "name" && <span className="text-xs text-orange-400">Required</span>}
+          </div>
 
-      {/* Message */}
-      <div>
-        <label htmlFor="message" className="block text-sm text-gray-300 mb-1">
-          Message
-        </label>
-        <textarea
-          id="message"
-          rows={5}
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          required
-          placeholder="Tell us what's on your mind..."
-          className="w-full p-3 rounded-md bg-[#0f0f0f] border border-[#333] focus:outline-none focus:ring-2 focus:ring-red-500"
-        />
-      </div>
+          {/* Email Field */}
+          <div className="space-y-2">
+            <label htmlFor="email" className="text-white font-medium">Email *</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="your.email@example.com"
+              onFocus={() => setFocusedField("email")}
+              onBlur={() => setFocusedField(null)}
+              className="w-full px-4 py-2 border-2 border-gray-700 text-white bg-gray-800 placeholder-gray-500 focus:outline-none focus:border-orange-500"
+            />
+            {focusedField === "email" && <span className="text-xs text-orange-400">Required</span>}
+          </div>
 
-      {/* Button */}
-      <button
-        type="submit"
-        className="w-full py-3 bg-red-600 hover:bg-red-700 transition rounded-md font-semibold flex justify-center items-center gap-2"
-      >
-        Send Message
-        <span>🚀</span>
-      </button>
-    </form>
-  );
+          {/* Subject Field */}
+          <div className="space-y-2">
+            <label htmlFor="subject" className="text-white font-medium">Subject *</label>
+            <select
+              id="subject"
+              onChange={() => setFocusedField("subject")}
+              className="w-full px-4 py-2 border-2 border-gray-700 text-white bg-gray-800 focus:outline-none focus:border-orange-500"
+            >
+              <option>Select a subject</option>
+              <option value="general">General Inquiry</option>
+              <option value="sponsorship">Sponsorship Opportunity</option>
+              <option value="collaboration">Technical Collaboration</option>
+              <option value="outreach">Outreach Program</option>
+              <option value="recruitment">Join Our Team</option>
+              <option value="media">Media & Press</option>
+            </select>
+            {focusedField === "subject" && <span className="text-xs text-orange-400">Required</span>}
+          </div>
+
+          {/* Message Field */}
+          <div className="space-y-2">
+            <label htmlFor="message" className="text-white font-medium">Message *</label>
+            <textarea
+              id="message"
+              placeholder="Tell us more about your inquiry..."
+              rows={6}
+              onFocus={() => setFocusedField("message")}
+              onBlur={() => setFocusedField(null)}
+              className="w-full px-4 py-2 border-2 border-gray-700 text-white bg-gray-800 placeholder-gray-500 focus:outline-none focus:border-orange-500"
+            />
+            {focusedField === "message" && <span className="text-xs text-orange-400">Required</span>}
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting || isSuccess}
+            className="w-full bg-linear-to-r from-orange-500 to-yellow-500 text-white py-3 rounded-lg shadow-lg hover:scale-105 transition-all duration-300 disabled:opacity-50"
+          >
+            {isSubmitting ? "Sending..." : isSuccess ? "Message Sent!" : "Send Message"}
+          </button>
+        </form>
+      </div>
+    </div>
+  )
 }

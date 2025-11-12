@@ -50,7 +50,7 @@ export default function Navbar() {
               <Link href="/competitions/robotx" className="block px-4 py-2 hover:bg-gray-800">RobotX</Link>
             </div>
           </div>
-
+          <Link href="/outreach" className="hover:text-gray-300">Outreach</Link>
           <Link href="/sponsors" className="hover:text-gray-300">Sponsors</Link>
           <Link href="/contact" className="hover:text-gray-300">Contact</Link>
         </nav>
