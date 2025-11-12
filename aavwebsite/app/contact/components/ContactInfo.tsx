@@ -1,70 +1,123 @@
-"use client";
+"use client"
 
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react";
-import Link from "next/link";
+import { useState } from "react"
+import { ExternalLink, Copy, Check } from "lucide-react"
 
-export default function ContactInfo() {
+const contactDetails = [
+  {
+    icon: "✉️",
+    label: "Email",
+    value: "contact@ntuarchimedes.org",
+    link: "mailto:contact@ntuarchimedes.org",
+    copyable: true,
+  },
+  {
+    icon: "📞",
+    label: "Phone",
+    value: "+65 6790 4321",
+    link: "tel:+6567904321",
+    copyable: true,
+  },
+  {
+    icon: "📍",
+    label: "Location",
+    value: "School of MAE, NTU Singapore",
+    link: "https://maps.google.com/?q=NTU+Singapore",
+    copyable: false,
+  },
+]
+
+const socialLinks = [
+  {
+    icon: "📸",
+    label: "Instagram",
+    handle: "@ntuarchimedes",
+    link: "https://instagram.com/ntuarchimedes",
+  },
+  {
+    icon: "🔗",
+    label: "LinkedIn",
+    handle: "NTU Archimedes",
+    link: "https://linkedin.com/company/ntuarchimedes",
+  },
+  {
+    icon: "▶️",
+    label: "YouTube",
+    handle: "Archimedes AAV",
+    link: "https://youtube.com/@ntuarchimedes",
+  },
+]
+
+export function ContactInfo() {
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+
+  const handleCopy = (text: string, index: number) => {
+    navigator.clipboard.writeText(text)
+    setCopiedIndex(index)
+    setTimeout(() => setCopiedIndex(null), 2000)
+  }
+
   return (
-    <div className="space-y-8 bg-[#1c1c1c]/80 rounded-2xl p-8 shadow-lg backdrop-blur-sm border border-[#2a2a2a]">
-      <div>
-        <h2 className="text-2xl font-bold mb-6">Get in touch</h2>
-        <div className="space-y-6">
-          <div className="flex items-center gap-4">
-            <div className="bg-red-600 p-3 rounded-md">
-              <Mail size={20} />
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">Email</p>
-              <p className="font-semibold">hello@example.com</p>
-            </div>
-          </div>
+    <div className="flex justify-center items-center min-h-screen bg-black px-8 py-12">
+      <div className="w-full max-w-xl space-y-6 bg-zinc-800 p-8 rounded-xl shadow-lg">
+        <h2 className="text-4xl font-semibold text-white mb-4">Contact Information</h2>
+        <p className="text-gray-400 mb-6">
+          Reach out for sponsorship, collaboration, outreach programs, or to join our team. We typically respond within 24-48 hours.
+        </p>
 
-          <div className="flex items-center gap-4">
-            <div className="bg-red-600 p-3 rounded-md">
-              <Phone size={20} />
+        <div className="space-y-4">
+          {contactDetails.map((detail, index) => (
+            <div key={index} className="flex items-center gap-4 bg-gray-700 p-4 rounded-lg">
+              <div className="w-12 h-12 bg-linear-to-br from-orange-500 to-yellow-500 text-white flex items-center justify-center rounded-xl">
+                {detail.icon}
+              </div>
+              <div className="flex-1">
+                <div className="text-sm text-gray-500 mb-1">{detail.label}</div>
+                <div className="font-medium text-white">{detail.value}</div>
+              </div>
+              <div className="flex gap-2">
+                {detail.copyable && (
+                  <button
+                    onClick={() => handleCopy(detail.value, index)}
+                    className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center"
+                  >
+                    {copiedIndex === index ? (
+                      <Check className="w-5 h-5 text-green-400" />
+                    ) : (
+                      <Copy className="w-5 h-5 text-white" />
+                    )}
+                  </button>
+                )}
+                <a href={detail.link} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center">
+                  <ExternalLink className="w-5 h-5" />
+                </a>
+              </div>
             </div>
-            <div>
-              <p className="text-gray-400 text-sm">Phone</p>
-              <p className="font-semibold">+1 (555) 123-4567</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="bg-red-600 p-3 rounded-md">
-              <MapPin size={20} />
-            </div>
-            <div>
-              <p className="text-gray-400 text-sm">Location</p>
-              <p className="font-semibold">San Francisco, CA</p>
-            </div>
-          </div>
+          ))}
         </div>
-      </div>
 
-      {/* Socials */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">Follow us</h2>
-        <div className="flex gap-4">
-          <Link
-            href="#"
-            className="bg-[#0f0f0f] p-3 rounded-md hover:bg-red-600 transition"
-          >
-            <Github size={20} />
-          </Link>
-          <Link
-            href="#"
-            className="bg-[#0f0f0f] p-3 rounded-md hover:bg-red-600 transition"
-          >
-            <Linkedin size={20} />
-          </Link>
-          <Link
-            href="#"
-            className="bg-[#0f0f0f] p-3 rounded-md hover:bg-red-600 transition"
-          >
-            <Twitter size={20} />
-          </Link>
+        <div className="space-y-4">
+          {socialLinks.map((social, index) => (
+            <div key={index} className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
+              <div className="w-12 h-12 bg-linear-to-br from-pink-500 to-orange-500 text-white flex items-center justify-center rounded-xl">
+                {social.icon}
+              </div>
+              <div className="flex-1">
+                <div className="text-sm text-gray-500 mb-1">{social.label}</div>
+                <div className="font-medium text-white">{social.handle}</div>
+              </div>
+              <a
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center"
+              >
+                <ExternalLink className="w-5 h-5" />
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </div>
-  );
+  )
 }
