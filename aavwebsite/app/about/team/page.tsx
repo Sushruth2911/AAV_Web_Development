@@ -63,7 +63,7 @@ export default function TeamPage() {
       <Navbar />
 
       {/* Page background with subtle gradient + blobs */}
-      <main className="min-h-screen bg-gradient-to-b from-[#020617] via-[#020617] to-[#020617] text-slate-50">
+      <main className="min-h-screen bg-linear-to-b from-[#020617] via-[#020617] to-[#020617] text-slate-50">
         <div className="relative pt-28 pb-20">
           {/* Glowing blobs */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -83,7 +83,7 @@ export default function TeamPage() {
 
             {/* HERO SECTION */}
             <section className="text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-gradient-to-r from-teal-500/20 via-cyan-400/20 to-sky-500/20 border border-teal-400/40 text-xs font-medium text-teal-200 shadow-[0_0_40px_rgba(45,212,191,0.35)] mb-4">
+              <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-linear-to-r from-teal-500/20 via-cyan-400/20 to-sky-500/20 border border-teal-400/40 text-xs font-medium text-teal-200 shadow-[0_0_40px_rgba(45,212,191,0.35)] mb-4">
                 <span className="text-sm">👥</span>
                 Our Team 2025
               </span>
@@ -92,7 +92,7 @@ export default function TeamPage() {
                 Meet the Innovators
                 <br />
                 Behind{" "}
-                <span className="bg-gradient-to-r from-teal-300 via-cyan-300 to-sky-300 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-teal-300 via-cyan-300 to-sky-300 bg-clip-text text-transparent">
                   Our Success
                 </span>
               </h1>
@@ -110,7 +110,7 @@ export default function TeamPage() {
                 {teamMembers.map((member, index) => (
                   <article
                     key={member.name}
-                    className="group bg-gradient-to-b from-slate-900/70 via-slate-900/80 to-slate-950/90 rounded-3xl border border-slate-700/70 shadow-[0_18px_45px_rgba(15,23,42,0.85)] flex flex-col items-center text-center px-6 py-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_70px_rgba(34,211,238,0.35)] hover:border-teal-400/70"
+                    className="group bg-linear-to-b from-slate-900/70 via-slate-900/80 to-slate-950/90 rounded-3xl border border-slate-700/70 shadow-[0_18px_45px_rgba(15,23,42,0.85)] flex flex-col items-center text-center px-6 py-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_70px_rgba(34,211,238,0.35)] hover:border-teal-400/70"
                     style={{
                       // tiny staggered animation feeling on load
                       animation: `fadeUp 0.6s ease forwards`,
@@ -121,7 +121,7 @@ export default function TeamPage() {
                     {/* Avatar placeholder (gradient ring, initials) */}
                     <div className="relative mb-6">
                       <div className="absolute inset-0 rounded-full bg-teal-400/40 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="relative w-28 h-28 rounded-full bg-gradient-to-br from-teal-500 via-cyan-500 to-sky-500 flex items-center justify-center ring-4 ring-slate-900">
+                      <div className="relative w-28 h-28 rounded-full bg-linear-to-br from-teal-500 via-cyan-500 to-sky-500 flex items-center justify-center ring-4 ring-slate-900">
                         <span className="text-2xl font-extrabold text-slate-950 drop-shadow-sm">
                           {getInitials(member.name)}
                         </span>
@@ -151,7 +151,7 @@ export default function TeamPage() {
                       href={member.linkedin}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-auto inline-flex items-center justify-center w-full rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-sky-400 text-slate-950 text-sm font-semibold py-2.5 hover:brightness-110 hover:shadow-[0_0_25px_rgba(56,189,248,0.7)] transition-all"
+                      className="mt-auto inline-flex items-center justify-center w-full rounded-full bg-linear-to-r from-teal-400 via-cyan-400 to-sky-400 text-slate-950 text-sm font-semibold py-2.5 hover:brightness-110 hover:shadow-[0_0_25px_rgba(56,189,248,0.7)] transition-all"
                     >
                       <span className="mr-2">🔗</span>
                       Connect on LinkedIn
@@ -238,7 +238,7 @@ export default function TeamPage() {
 
               <div className="grid gap-8 md:grid-cols-2">
                 {/* Card 1 */}
-                <div className="relative rounded-3xl overflow-hidden shadow-[0_22px_60px_rgba(34,211,238,0.45)] bg-gradient-to-br from-teal-500 via-cyan-500 to-sky-500 p-6 md:p-8 flex flex-col justify-end min-h-[220px] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(34,211,238,0.75)]">
+                <div className="relative rounded-3xl overflow-hidden shadow-[0_22px_60px_rgba(34,211,238,0.45)] bg-linear-to-br from-teal-500 via-cyan-500 to-sky-500 p-6 md:p-8 flex flex-col justify-end min-h-[220px] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(34,211,238,0.75)]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(248,250,252,0.35),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.55),transparent_60%)]" />
                   <div className="relative">
                     <h3 className="text-lg font-semibold mb-1 text-slate-950 drop-shadow-sm">
@@ -252,7 +252,7 @@ export default function TeamPage() {
                 </div>
 
                 {/* Card 2 */}
-                <div className="relative rounded-3xl overflow-hidden shadow-[0_22px_60px_rgba(251,191,36,0.45)] bg-gradient-to-br from-amber-400 via-orange-500 to-rose-500 p-6 md:p-8 flex flex-col justify-end min-h-[220px] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(248,113,113,0.75)]">
+                <div className="relative rounded-3xl overflow-hidden shadow-[0_22px_60px_rgba(251,191,36,0.45)] bg-linear-to-br from-amber-400 via-orange-500 to-rose-500 p-6 md:p-8 flex flex-col justify-end min-h-[220px] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(248,113,113,0.75)]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(248,250,252,0.35),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.65),transparent_60%)]" />
                   <div className="relative">
                     <h3 className="text-lg font-semibold mb-1 text-slate-950 drop-shadow-sm">
@@ -280,7 +280,7 @@ export default function TeamPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/careers"
-                  className="inline-flex items-center justify-center px-7 py-2.5 rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-sky-400 text-slate-950 text-sm font-semibold shadow-[0_0_25px_rgba(56,189,248,0.7)] hover:brightness-110 hover:shadow-[0_0_35px_rgba(45,212,191,0.9)] transition-all"
+                  className="inline-flex items-center justify-center px-7 py-2.5 rounded-full bg-linear-to-r from-teal-400 via-cyan-400 to-sky-400 text-slate-950 text-sm font-semibold shadow-[0_0_25px_rgba(56,189,248,0.7)] hover:brightness-110 hover:shadow-[0_0_35px_rgba(45,212,191,0.9)] transition-all"
                 >
                   View Open Positions
                 </Link>

@@ -10,7 +10,7 @@ const ContactPage = () => {
       <main className="bg-[#121212] text-white font-sans min-h-screen pt-20">
         {/* 🚀 Contact Header */}
         <section className="py-20 text-center bg-[#1a1a1a] text-white">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-500">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-linear-to-r from-orange-500 to-yellow-500">
             Get In <span className="text-6xl md:text-7xl text-orange-500">Touch</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-6">
@@ -20,7 +20,7 @@ const ContactPage = () => {
           {/* Let's Connect Button */}
           <a
             href="#contact-form"
-            className="inline-block bg-gradient-to-r from-orange-500 to-yellow-500 text-black font-semibold px-8 py-4 rounded-full text-lg hover:bg-orange-600 hover:scale-105 transition-all duration-300"
+            className="inline-block bg-linear-to-r from-orange-500 to-yellow-500 text-black font-semibold px-8 py-4 rounded-full text-lg hover:bg-orange-600 hover:scale-105 transition-all duration-300"
           >
             Let&apos;s Connect
           </a>
@@ -91,7 +91,7 @@ const ContactPage = () => {
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-orange-500 to-yellow-500 text-black font-semibold p-4 rounded-lg hover:scale-[1.02] transition-all duration-300"
+                className="w-full bg-linear-to-r from-orange-500 to-yellow-500 text-black font-semibold p-4 rounded-lg hover:scale-[1.02] transition-all duration-300"
               >
                 Send Message
               </button>
@@ -106,7 +106,7 @@ const ContactPage = () => {
             </p>
             {/* Email */}
             <div className="contact-item flex items-center gap-4 p-4 bg-zinc-700 rounded-lg hover:border-orange-500 hover:ring-2 hover:ring-orange-500 transition-all duration-300">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-500 text-white flex items-center justify-center rounded-xl">
+              <div className="w-10 h-10 bg-linear-to-br from-orange-500 to-yellow-500 text-white flex items-center justify-center rounded-xl">
                 📧
               </div>
               <div>
@@ -116,7 +116,7 @@ const ContactPage = () => {
             </div>
             {/* Phone */}
             <div className="contact-item flex items-center gap-4 p-4 bg-zinc-700 rounded-lg hover:border-orange-500 hover:ring-2 hover:ring-orange-500 transition-all duration-300">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-500 text-white flex items-center justify-center rounded-xl">
+              <div className="w-10 h-10 bg-linear-to-br from-orange-500 to-yellow-500 text-white flex items-center justify-center rounded-xl">
                 📞
               </div>
               <div>
@@ -126,7 +126,7 @@ const ContactPage = () => {
             </div>
             {/* Location */}
             <div className="contact-item flex items-center gap-4 p-4 bg-zinc-700 rounded-lg hover:border-orange-500 hover:ring-2 hover:ring-orange-500 transition-all duration-300">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-500 text-white flex items-center justify-center rounded-xl">
+              <div className="w-10 h-10 bg-linear-to-br from-orange-500 to-yellow-500 text-white flex items-center justify-center rounded-xl">
                 📍
               </div>
               <div>
@@ -141,7 +141,7 @@ const ContactPage = () => {
               <div className="space-y-4">
                 {/* Instagram */}
                 <div className="contact-item flex items-center gap-4 p-4 bg-zinc-700 rounded-lg hover:border-orange-500 hover:ring-2 hover:ring-orange-500 transition-all duration-300">
-                  <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-orange-500 text-white flex items-center justify-center rounded-xl">
+                  <div className="w-10 h-10 bg-linear-to-br from-pink-500 to-orange-500 text-white flex items-center justify-center rounded-xl">
                     📸
                   </div>
                   <div>
@@ -159,7 +159,7 @@ const ContactPage = () => {
 
                 {/* LinkedIn */}
                 <div className="contact-item flex items-center gap-4 p-4 bg-zinc-700 rounded-lg hover:border-orange-500 hover:ring-2 hover:ring-orange-500 transition-all duration-300">
-                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center rounded-xl">
+                  <div className="w-10 h-10 bg-linear-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center rounded-xl">
                     💼
                   </div>
                   <div>
@@ -177,7 +177,7 @@ const ContactPage = () => {
 
                 {/* YouTube */}
                 <div className="contact-item flex items-center gap-4 p-4 bg-zinc-700 rounded-lg hover:border-orange-500 hover:ring-2 hover:ring-orange-500 transition-all duration-300">
-                  <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 text-white flex items-center justify-center rounded-xl">
+                  <div className="w-10 h-10 bg-linear-to-br from-red-500 to-red-600 text-white flex items-center justify-center rounded-xl">
                     🎥
                   </div>
                   <div>
