@@ -81,7 +81,7 @@ export default function ShopPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-gradient-to-b from-[#f5fbff] via-[#f6f7fb] to-[#f3f5f9] text-slate-900">
+      <main className="min-h-screen bg-linear-to-b from-[#f5fbff] via-[#f6f7fb] to-[#f3f5f9] text-slate-900">
         <div className="pt-28 pb-20 max-w-6xl mx-auto px-4 md:px-6 lg:px-0">
           {/* HERO */}
           <section className="text-center mb-12">
@@ -130,7 +130,7 @@ export default function ShopPage() {
                 {/* “Image” area – gradient, no actual images needed */}
                 <div className="relative h-64 overflow-hidden">
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br from-sky-200 via-slate-100 to-slate-200 ${
+                    className={`absolute inset-0 bg-linear-to-br from-sky-200 via-slate-100 to-slate-200 ${
                       product.highlight
                         ? "from-[#0ea5e9] via-[#22d3ee] to-[#e0f2fe]"
                         : ""
@@ -179,7 +179,7 @@ export default function ShopPage() {
                 </div>
 
                 {/* subtle bottom accent bar */}
-                <div className="h-1 bg-gradient-to-r from-[#00a3b5] via-[#38bdf8] to-transparent opacity-80" />
+                <div className="h-1 bg-linear-to-r from-[#00a3b5] via-[#38bdf8] to-transparent opacity-80" />
               </article>
             ))}
           </section>

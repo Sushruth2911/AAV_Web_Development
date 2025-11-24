@@ -35,7 +35,7 @@ export default function Navbar() {
                 z-50
               "
             >
-              <Link href="/about/team" className="block px-4 py-2 hover:bg-gray-800">
+              <Link href="/about/aboutus" className="block px-4 py-2 hover:bg-gray-800">
                 About Us
               </Link>
               <Link href="/about/team" className="block px-4 py-2 hover:bg-gray-800">
@@ -156,7 +156,7 @@ export default function Navbar() {
             </button>
             {openDropdown === "about" && (
               <div className="flex flex-col space-y-1 mt-2 pr-4 text-gray-300">
-                <Link href="/about/team" className="hover:text-white">
+                <Link href="/about/aboutus" className="hover:text-white">
                   About
                 </Link>
                 <Link href="/about/team" className="hover:text-white">
