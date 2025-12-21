@@ -1,114 +1,3 @@
-// "use client";
-// import Navbar from "@/components/navbar";
-
-// import Link from "next/link";
-
-// export default function Home() {
-//   return (
-//     <>
-//       <Navbar />
-//       <main className="bg-[#121212] text-white font-sans min-h-screen">
-//       {/* 🚀 Trailer Section */}
-//       <section className="py-60 text-center border-b border-[#1e1e1e]">
-//         <h2 className="text-xl md:text-2xl font-medium">
-//           🚀 Trailer Section (Coming Soon)
-//         </h2>
-//       </section>
-
-//       {/* 🧠 Innovation Section */}
-//       <section className="px-10 py-40 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto border-b border-[#1e1e1e] gap-10">
-//         <div className="md:w-1/2 space-y-3">
-//           <h3 className="text-lg font-semibold">Innovation in Motion</h3>
-//           <p className="text-gray-300 leading-relaxed">
-//             Our team at NTU AAV is constantly pushing boundaries in UAV and
-//             autonomous vehicle technologies.
-//           </p>
-//         </div>
-//         <div className="md:w-1/2 flex justify-center md:justify-end gap-4">
-//           <div className="bg-[#2a2a2a] h-24 w-24 rounded-md"></div>
-//           <div className="bg-[#2a2a2a] h-24 w-24 rounded-md"></div>
-//           <div className="bg-[#2a2a2a] h-24 w-24 rounded-md"></div>
-//         </div>
-//       </section>
-
-//       {/* 🪄 ASV / UAV Section */}
-//       <section className="grid grid-cols-1 md:grid-cols-2">
-//         <div className="bg-[#181818] h-72 p-10 flex flex-col justify-between border-b border-r md:border-r border-[#1e1e1e]">
-//           <div>
-//             <h4 className="text-2xl font-bold">ASV</h4>
-//           </div>
-//           <Link
-//             href="/asv"
-//             className="text-sm text-gray-300 hover:text-white transition"
-//           >
-//             View More →
-//           </Link>
-//         </div>
-//         <div className="bg-[#181818] h-72 p-10 flex flex-col justify-between border-b border-[#1e1e1e]">
-//           <div>
-//             <h4 className="text-2xl font-bold">UAV</h4>
-//           </div>
-//           <Link
-//             href="/uav"
-//             className="text-sm text-gray-300 hover:text-white transition"
-//           >
-//             View More →
-//           </Link>
-//         </div>
-//       </section>
-
-//       {/* 🏆 Competitions Section */}
-//       <section className="grid grid-cols-1 md:grid-cols-2">
-//         <div className="bg-[#181818] h-72 p-10 flex flex-col justify-between border-b border-r md:border-r border-[#1e1e1e]">
-//           <div>
-//             <h4 className="text-2xl font-bold">RobotX</h4>
-//           </div>
-//           <Link
-//             href="/competitions/robotx"
-//             className="text-sm text-gray-300 hover:text-white transition"
-//           >
-//             View More →
-//           </Link>
-//         </div>
-//         <div className="bg-[#181818] h-72 p-10 flex flex-col justify-between border-b border-[#1e1e1e]">
-//           <div>
-//             <h4 className="text-2xl font-bold">SUAS</h4>
-//           </div>
-//           <Link
-//             href="/competitions/suas"
-//             className="text-sm text-gray-300 hover:text-white transition"
-//           >
-//             View More →
-//           </Link>
-//         </div>
-//                 <div className="bg-[#181818] h-72 p-10 flex flex-col justify-between border-b border-[#1e1e1e]">
-//           <div>
-//             <h4 className="text-2xl font-bold">Sponsors</h4>
-//           </div>
-//           <Link
-//             href="/competitions/suas"
-//             className="text-sm text-gray-300 hover:text-white transition"
-//           >
-//             View More →
-//           </Link>
-//         </div>
-//                 <div className="bg-[#181818] h-72 p-10 flex flex-col justify-between border-b border-[#1e1e1e]">
-//           <div>
-//             <h4 className="text-2xl font-bold">Newsroom</h4>
-//           </div>
-//           <Link
-//             href="/competitions/suas"
-//             className="text-sm text-gray-300 hover:text-white transition"
-//           >
-//             View More →
-//           </Link>
-//         </div>
-//       </section>
-//       </main>
-//     </>
-//   );
-// }
-
 "use client";
 
 import Navbar from "@/components/navbar";
@@ -215,6 +104,7 @@ export default function Home() {
     <>
       <Navbar />
       <main className="bg-[#121212] text-white font-sans min-h-screen">
+        
         {/* 🚀 Trailer Section */}
         <section className="py-60 text-center border-b border-[#1e1e1e]">
           <h2 className="text-xl md:text-2xl font-medium">
@@ -222,21 +112,6 @@ export default function Home() {
           </h2>
         </section>
 
-        {/* 🧠 Innovation Section */}
-        <section className="px-10 py-40 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto border-b border-[#1e1e1e] gap-10">
-          <div className="md:w-1/2 space-y-3">
-            <h3 className="text-lg font-semibold">Innovation in Motion</h3>
-            <p className="text-gray-300 leading-relaxed">
-              Our team at NTU AAV is constantly pushing boundaries in UAV and
-              autonomous vehicle technologies.
-            </p>
-          </div>
-          <div className="md:w-1/2 flex justify-center md:justify-end gap-4">
-            <div className="bg-[#2a2a2a] h-24 w-24 rounded-md"></div>
-            <div className="bg-[#2a2a2a] h-24 w-24 rounded-md"></div>
-            <div className="bg-[#2a2a2a] h-24 w-24 rounded-md"></div>
-          </div>
-        </section>
 
         {/* ===== 6 Boxes (2 rows x 2 cols on md) ===== */}
         <section className="grid grid-cols-1 md:grid-cols-2">
@@ -353,6 +228,113 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+<section className="border-b border-[#1e1e1e]">
+  <div className="max-w-7xl mx-auto px-6 md:px-10 py-16">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Card 1: About Us */}
+      <Link
+        href="/about/aboutus"
+        className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#181818] shadow-lg"
+      >
+        <div className="relative aspect-[4/3]">
+          <Image
+            src="/13. Section 5.1 - About Us.jpeg"
+            alt="About Us"
+            fill
+            priority={false}
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(600px_circle_at_30%_20%,rgba(255,255,255,0.18),transparent_55%)]" />
+        </div>
+
+        <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-4">
+          <div className="text-white/95">
+            <p className="text-xs uppercase tracking-wider text-white/70">
+              Learn more
+            </p>
+            <p className="text-lg font-semibold">About Us</p>
+          </div>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/90 backdrop-blur transition group-hover:bg-white/15">
+            Discover
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </span>
+        </div>
+      </Link>
+
+      {/* Card 2: Our Team */}
+      <Link
+        href="/about/team"
+        className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#181818] shadow-lg"
+      >
+        <div className="relative aspect-[4/3]">
+          <Image
+            src="/14. Section 5.2 - Our Team.png"
+            alt="Our Team"
+            fill
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(600px_circle_at_30%_20%,rgba(255,255,255,0.18),transparent_55%)]" />
+        </div>
+
+        <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-4">
+          <div className="text-white/95">
+            <p className="text-xs uppercase tracking-wider text-white/70">
+              Meet the people
+            </p>
+            <p className="text-lg font-semibold">Our Team</p>
+          </div>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/90 backdrop-blur transition group-hover:bg-white/15">
+            Discover
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </span>
+        </div>
+      </Link>
+
+      {/* Card 3: Contact Us */}
+      <Link
+        href="/contact"
+        className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#181818] shadow-lg"
+      >
+        <div className="relative aspect-[4/3]">
+          <Image
+            src="/15. Section 5.3 - Contact Us.jpeg"
+            alt="Contact Us"
+            fill
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(600px_circle_at_30%_20%,rgba(255,255,255,0.18),transparent_55%)]" />
+        </div>
+
+        <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-4">
+          <div className="text-white/95">
+            <p className="text-xs uppercase tracking-wider text-white/70">
+              Get in touch
+            </p>
+            <p className="text-lg font-semibold">Contact Us</p>
+          </div>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/90 backdrop-blur transition group-hover:bg-white/15">
+            Discover
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </span>
+        </div>
+      </Link>
+    </div>
+  </div>
+</section>
+
       </main>
     </>
   );
@@ -422,5 +404,6 @@ function CarouselCard({
         </div>
       </div>
     </button>
+
   );
 }
