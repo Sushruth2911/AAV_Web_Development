@@ -22,10 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} antialiased bg-white text-zinc-900 dark:bg-[#0b0c0e] dark:text-white`}
+        className={`${roboto.className} antialiased bg-[#121212] text-white m-0 p-0`}
       >
-        {/* offset for sticky navbar height */}
-        <main className="min-h-screen pt-16">{children}</main>
+        {children}
       </body>
     </html>
   );
