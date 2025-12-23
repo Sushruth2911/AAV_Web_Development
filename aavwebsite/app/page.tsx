@@ -2,8 +2,9 @@
 import Navbar from "@/components/navbar";
 import Prism from "@/components/Prism";
 import SplitText from "@/components/SplitText";
+import CardSwap, { Card } from "@/components/CardSwap";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 function TypingCaption() {
   const captions = [
@@ -57,12 +58,38 @@ function TypingCaption() {
 }
 
 export default function Home() {
+  const [isInnovationVisible, setIsInnovationVisible] = useState(false);
+  const innovationRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInnovationVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (innovationRef.current) {
+      observer.observe(innovationRef.current);
+    }
+
+    return () => {
+      if (innovationRef.current) {
+        observer.unobserve(innovationRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       <Navbar />
       <main className="bg-[#121212] text-white font-sans min-h-screen">
       {/* 🚀 Trailer Section */}
-      <section className="relative min-h-screen py-32 md:py-40 text-center border-b border-[#1e1e1e] overflow-hidden">
+      <section className="relative min-h-screen py-32 md:py-40 text-center overflow-hidden">
         {/* Prism Background */}
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0, opacity: 0.9 }}>
           <Prism
@@ -119,6 +146,17 @@ export default function Home() {
                 0 0 60px rgba(0, 255, 255, 0.2),
                 0 2px 4px rgba(0, 0, 0, 0.5);
             }
+            .innovation-heading {
+              color: #ffffff;
+              text-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.4),
+                0 0 40px rgba(54, 82, 164, 0.3),
+                0 0 60px rgba(0, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.5);
+              animation: glow-pulse 3s ease-in-out infinite;
+              letter-spacing: -0.02em;
+              line-height: 1.1;
+            }
             @keyframes cursor-blink {
               0%, 49% { opacity: 1; }
               50%, 100% { opacity: 0; }
@@ -139,12 +177,26 @@ export default function Home() {
               from { opacity: 0; transform: translateY(10px); }
               to { opacity: 1; transform: translateY(0); }
             }
+            @keyframes slide-in-left {
+              from { opacity: 0; transform: translateX(-50px); }
+              to { opacity: 1; transform: translateX(0); }
+            }
+            @keyframes slide-in-right {
+              from { opacity: 0; transform: translateX(50px); }
+              to { opacity: 1; transform: translateX(0); }
+            }
             .animate-fade-in {
               animation: fade-in 0.8s ease-out forwards;
             }
+            .animate-slide-in-left {
+              animation: slide-in-left 0.8s ease-out forwards;
+            }
+            .animate-slide-in-right {
+              animation: slide-in-right 0.8s ease-out forwards;
+            }
             .typing-caption {
               margin-top: 3rem;
-              font-size: 1.75rem;
+              font-size: 1.25rem;
               font-weight: 300;
               letter-spacing: 0.1em;
               color: rgba(255, 255, 255, 0.95);
@@ -152,7 +204,7 @@ export default function Home() {
                 0 0 10px rgba(0, 255, 255, 0.5),
                 0 0 20px rgba(54, 82, 164, 0.3),
                 0 2px 10px rgba(0, 0, 0, 0.5);
-              min-height: 3rem;
+              min-height: 2rem;
               text-transform: uppercase;
               font-family: 'Courier New', monospace;
             }
@@ -192,82 +244,197 @@ export default function Home() {
       </section>
 
       {/* 🧠 Innovation Section */}
-      <section className="px-10 py-40 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto border-b border-[#1e1e1e] gap-10">
-        <div className="md:w-1/2 space-y-3">
-          <h3 className="text-lg font-semibold">Innovation in Motion</h3>
+      <section ref={innovationRef} className="relative px-10 pt-8 pb-32 md:pt-12 md:pb-40 border-b border-[#1e1e1e] overflow-hidden -mt-20">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#121212] via-[#0a0a0a] to-[#121212]"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+            {/* Section Header - Side by side */}
+            <div className={`flex-1 md:text-left text-center flex items-center transition-all duration-1000 ${isInnovationVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{ height: '600px' }}>
+              <div>
+                <h2 className="innovation-heading text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 tracking-tight">
+                  Innovation in Motion
+                </h2>
+                <p className="text-lg md:text-xl text-gray-400">
+                  Discover how we're shaping the future of autonomous systems
+                </p>
+              </div>
+            </div>
+
+            {/* CardSwap Container */}
+            <div className={`flex-1 flex items-center justify-center transition-all duration-1000 delay-300 ${isInnovationVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`} style={{ height: '600px', position: 'relative', width: '100%', minWidth: '400px' }}>
+              <CardSwap
+                cardDistance={60}
+                verticalDistance={70}
+                delay={5000}
+                pauseOnHover={true}
+              >
+                <Card className="bg-transparent border border-white/10 rounded-lg p-6 backdrop-blur-md shadow-lg w-[480px]" style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent"></div>
+                  </div>
+                  {/* Photo Space */}
+                  <div className="mb-4 w-full h-48 rounded-md bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-white/5 flex items-center justify-center overflow-hidden">
+                    <span className="text-gray-500 text-sm">Photo placeholder</span>
+                  </div>
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold mb-3 text-white">Pushing Boundaries 🚀</h3>
+                  </div>
           <p className="text-gray-300 leading-relaxed">
-            Our team at NTU AAV is constantly pushing boundaries in UAV and
-            autonomous vehicle technologies.
-          </p>
+         NTU AAV pushes boundaries of what's possible with autonomous vehicle technologies.
+                  </p>
+                </Card>
+                
+                <Card className="bg-transparent border border-white/10 rounded-lg p-6 backdrop-blur-md shadow-lg w-[480px]" style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent"></div>
+                  </div>
+                  {/* Photo Space */}
+                  <div className="mb-4 w-full h-48 rounded-md bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-white/5 flex items-center justify-center overflow-hidden">
+                    <span className="text-gray-500 text-sm">Photo placeholder</span>
+                  </div>
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold mb-3 text-white">Advanced Solutions ⚡</h3>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed">
+                    We leverage cutting-edge tech to create groundbreaking solutions that excel
+                    in competitive environments and the real world.
+                  </p>
+                </Card>
+                
+                <Card className="bg-transparent border border-white/10 rounded-lg p-6 backdrop-blur-md shadow-lg w-[480px]" style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent"></div>
+                  </div>
+                  {/* Photo Space */}
+                  <div className="mb-4 w-full h-48 rounded-md bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-white/5 flex items-center justify-center overflow-hidden">
+                    <span className="text-gray-500 text-sm">Photo placeholder</span>
+                  </div>
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold mb-3 text-white">Next Generation 🌐</h3>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed">
+                    A team of passionate engineers innovating the future of autonomous vehicles, and powering up the industry's next best solutions.
+                  </p>
+                </Card>
+              </CardSwap>
+            </div>
         </div>
-        <div className="md:w-1/2 flex justify-center md:justify-end gap-4">
-          <div className="bg-[#2a2a2a] h-24 w-24 rounded-md"></div>
-          <div className="bg-[#2a2a2a] h-24 w-24 rounded-md"></div>
-          <div className="bg-[#2a2a2a] h-24 w-24 rounded-md"></div>
         </div>
       </section>
 
       {/* 🪄 ASV / UAV Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2">
-        <div className="bg-[#181818] h-72 p-10 flex flex-col justify-between border-b border-r md:border-r border-[#1e1e1e]">
-          <div>
-            <p className="text-xs text-gray-400 uppercase tracking-wide mb-1">
-              Category
-            </p>
-            <h4 className="text-2xl font-bold">ASV</h4>
+      <section className="relative py-20 px-10 border-b border-[#1e1e1e]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Link
+              href="/asv"
+              className="group relative bg-[#181818] rounded-xl p-10 flex flex-col justify-between border border-[#1e1e1e] hover:border-white/20 transition-all duration-300 hover:bg-[#1e1e1e] hover:-translate-y-1"
+            >
+              <div>
+                <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 font-medium">
+                  Category
+                </p>
+                <h4 className="text-3xl md:text-4xl font-bold mb-2 text-white group-hover:text-white transition-colors">
+                  ASV
+                </h4>
+                <p className="text-sm text-gray-400 mt-2">
+                  Autonomous Surface Vehicles
+                </p>
+              </div>
+              <div className="mt-6 flex items-center text-sm text-gray-300 group-hover:text-white transition-colors">
+                <span>View More</span>
+                <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
+              </div>
+            </Link>
+            <Link
+              href="/uav"
+              className="group relative bg-[#181818] rounded-xl p-10 flex flex-col justify-between border border-[#1e1e1e] hover:border-white/20 transition-all duration-300 hover:bg-[#1e1e1e] hover:-translate-y-1"
+            >
+              <div>
+                <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 font-medium">
+                  Category
+                </p>
+                <h4 className="text-3xl md:text-4xl font-bold mb-2 text-white group-hover:text-white transition-colors">
+                  UAV
+                </h4>
+                <p className="text-sm text-gray-400 mt-2">
+                  Unmanned Aerial Vehicles
+                </p>
+              </div>
+              <div className="mt-6 flex items-center text-sm text-gray-300 group-hover:text-white transition-colors">
+                <span>View More</span>
+                <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
+              </div>
+            </Link>
           </div>
-          <Link
-            href="/asv"
-            className="text-sm text-gray-300 hover:text-white transition"
-          >
-            View More →
-          </Link>
-        </div>
-        <div className="bg-[#181818] h-72 p-10 flex flex-col justify-between border-b border-[#1e1e1e]">
-          <div>
-            <p className="text-xs text-gray-400 uppercase tracking-wide mb-1">
-              Category
-            </p>
-            <h4 className="text-2xl font-bold">UAV</h4>
-          </div>
-          <Link
-            href="/uav"
-            className="text-sm text-gray-300 hover:text-white transition"
-          >
-            View More →
-          </Link>
         </div>
       </section>
 
       {/* 🏆 Competitions Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2">
-        <div className="bg-[#181818] h-72 p-10 flex flex-col justify-between border-b border-r md:border-r border-[#1e1e1e]">
-          <div>
-            <p className="text-xs text-gray-400 uppercase tracking-wide mb-1">
-              Competition
-            </p>
-            <h4 className="text-2xl font-bold">RobotX</h4>
+      <section className="relative py-20 px-10 border-b border-[#1e1e1e]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Link
+              href="/competitions/robotx"
+              className="group relative bg-[#181818] rounded-xl p-10 flex flex-col justify-between border border-[#1e1e1e] hover:border-white/20 transition-all duration-300 hover:bg-[#1e1e1e] hover:-translate-y-1"
+            >
+              <div>
+                <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 font-medium">
+                  Competition
+                </p>
+                <h4 className="text-3xl md:text-4xl font-bold mb-2 text-white group-hover:text-white transition-colors">
+                  RobotX
+                </h4>
+                <p className="text-sm text-gray-400 mt-2">
+                  Maritime autonomous systems challenge
+                </p>
+              </div>
+              <div className="mt-6 flex items-center text-sm text-gray-300 group-hover:text-white transition-colors">
+                <span>View More</span>
+                <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
+              </div>
+            </Link>
+            <Link
+              href="/competitions/suas"
+              className="group relative bg-[#181818] rounded-xl p-10 flex flex-col justify-between border border-[#1e1e1e] hover:border-white/20 transition-all duration-300 hover:bg-[#1e1e1e] hover:-translate-y-1"
+            >
+              <div>
+                <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 font-medium">
+                  Competition
+                </p>
+                <h4 className="text-3xl md:text-4xl font-bold mb-2 text-white group-hover:text-white transition-colors">
+                  SUAS
+                </h4>
+                <p className="text-sm text-gray-400 mt-2">
+                  Student Unmanned Aerial Systems
+                </p>
+              </div>
+              <div className="mt-6 flex items-center text-sm text-gray-300 group-hover:text-white transition-colors">
+                <span>View More</span>
+                <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
+              </div>
+            </Link>
           </div>
-          <Link
-            href="/competitions/robotx"
-            className="text-sm text-gray-300 hover:text-white transition"
-          >
-            View More →
-          </Link>
-        </div>
-        <div className="bg-[#181818] h-72 p-10 flex flex-col justify-between border-b border-[#1e1e1e]">
-          <div>
-            <p className="text-xs text-gray-400 uppercase tracking-wide mb-1">
-              Competition
-            </p>
-            <h4 className="text-2xl font-bold">SUAS</h4>
-          </div>
-          <Link
-            href="/competitions/suas"
-            className="text-sm text-gray-300 hover:text-white transition"
-          >
-            View More →
-          </Link>
         </div>
       </section>
 
