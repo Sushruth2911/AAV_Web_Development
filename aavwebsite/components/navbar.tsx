@@ -308,7 +308,7 @@ export default function Navbar() {
                 z-50
               "
             >
-              <Link href="/asv/1" className="block px-4 py-3 hover:bg-gray-800 text-base">
+              <Link href="/asv" className="block px-4 py-3 hover:bg-gray-800 text-base">
                 ASV 1.0 (RobotX 2024)
               </Link>
               <Link href="/asv/2" className="block px-4 py-3 hover:bg-gray-800 text-base">

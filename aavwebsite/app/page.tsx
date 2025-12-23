@@ -117,7 +117,7 @@ export default function Home() {
         <section className="grid grid-cols-1 md:grid-cols-2">
           <div className="bg-[#181818] h-80 p-10 flex flex-col justify-between border-b border-r md:border-r border-[#1e1e1e]">
             <h4 className="text-2xl font-bold">ASV</h4>
-            <Link href="/asv/1" className="text-sm text-gray-300 hover:text-white transition">
+            <Link href="/asv" className="text-sm text-gray-300 hover:text-white transition">
               View More →
             </Link>
           </div>
