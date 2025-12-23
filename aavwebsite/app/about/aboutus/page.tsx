@@ -64,7 +64,7 @@ export default function AboutPage() {
 
             <div className="relative max-w-5xl mx-auto px-4 md:px-6 text-center pb-16">
               <span className="inline-flex items-center px-4 py-1 rounded-full bg-[#e6f7fa] text-xs font-semibold text-[#008fb3] shadow-sm mb-6">
-                🛟 Est. 2012
+                🛟 Est. 2024
               </span>
 
               <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
@@ -92,7 +92,7 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* ORIGIN STORY */}
+          {/* ORIGIN STORY + TIMELINE */}
           <section className="max-w-6xl mx-auto px-4 md:px-6 mb-16">
             <div className="grid gap-10 md:grid-cols-[1.4fr,1fr] items-start">
               <div>
@@ -102,45 +102,7 @@ export default function AboutPage() {
                 <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
                   NTU's History
                 </h2>
-                <p className="text-sm md:text-base text-slate-600 leading-relaxed mb-4">
-                  In 2012, Professor Xie Ming was invited by RoboNation to
-                  establish NTU&apos;s first team for the RobotX Challenge. The
-                  team was formed specifically for this competition, and made
-                  their debut in 2014 when Singapore hosted the inaugural
-                  RobotX event.
-                </p>
-                <p className="text-sm md:text-base text-slate-600 leading-relaxed">
-                  Since then, our team has competed internationally, representing
-                  NTU across multiple continents and continuously pushing the
-                  boundaries of autonomous maritime technology.
-                </p>
-              </div>
-
-              {/* year cards */}
-              <div className="grid gap-4 sm:grid-cols-2">
-                {originMilestones.map((item) => (
-                  <div
-                    key={item.year}
-                    className="bg-white rounded-3xl border border-slate-200 shadow-sm px-6 py-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
-                  >
-                    <div className="text-xl font-extrabold text-[#008fb3] mb-1">
-                      {item.year}
-                    </div>
-                    <div className="text-sm text-slate-600">{item.location}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* TIMELINE SECTION */}
-          <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
-            <div className="mb-12">
-              <h2 className="text-4xl font-bold text-slate-900 mb-2">Competition Timeline</h2>
-              <p className="text-lg text-slate-600">Our journey through major competitions</p>
-            </div>
-            
-            <div className="space-y-6">
+                 <div className="space-y-6">
               {timelineEvents.map((event, index) => (
                 <div
                   key={index}
@@ -163,6 +125,8 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+              </div>
+            </div>
           </section>
 
           { /* MARITIME ROBOTX CHALLENGE SECTION */ }
@@ -183,17 +147,33 @@ export default function AboutPage() {
 
               {/* Image */}
               <div className="relative rounded-3xl overflow-hidden shadow-md">
-                <Image
-                  src="/Section 4 - Maritime RobotX Challenge.jpeg"
-                  alt="Maritime RobotX Challenge"
-                  width={700}
-                  height={460}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
+                <img src="/Section 4 - Maritime RobotX Challenge.jpeg" alt="RobotX Challenge" />
               </div>
             </div>
            </section>
+
+           { /* SUAS COMPETITION SECTION */ }
+          <section className="max-w-6xl mx-auto px-4 md:px-6">
+            <div className="grid gap-10 md:grid-cols-[1fr,1.2fr] items-center">
+              {/* Text Content */}
+              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-10">
+                <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
+                  SUAS Competition
+                </h2>
+                <p className="text-sm md:text-base text-slate-600 leading-relaxed">
+                   The Student Unmanned Aerial Systems (SUAS) Competition is an international competition organised by RoboNation, challenging university teams to design, build, and operate Unmanned Aerial Systems (UAS) capable of autonomous aerial missions. 
+                   Since its inception in 2002, SUAS has tested students' ability to integrate airframes, avionics, sensors, and software to accomplish a set of mission-critical tasks. These tasks include Autonomous Flight, Obstacle Avoidance, Object Detection, Classification, and Localisation, as well as Precision Air Delivery of payloads. 
+                   Following RobotX 2024, Archimedes is expanding beyond surface autonomy into aerial domains, with our participation in SUAS 2025 marking a strategic step forward. As UAVs and UAS technologies become increasingly vital in maritime, defence, and commercial operations, our team is committed to developing advanced aerial autonomy solutions that complement our maritime expertise.
+                </p>
+              </div>
+
+              {/* Image */}
+              <div className="relative rounded-3xl overflow-hidden shadow-md">
+                <img src="/4. Section 5 - SUAS.jpg" alt="SUAS Competition" />
+              </div>
+            </div>
+           </section>
+
         </div>
       </main>
     </>
