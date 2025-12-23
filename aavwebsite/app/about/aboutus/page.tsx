@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/navbar";
 
 const originMilestones = [
@@ -34,6 +35,18 @@ const newsItems = [
     summary:
       "A custom ROS-based protocol now provides faster, more resilient communication between onboard modules and the base station.",
   },
+];
+
+const timelineEvents = [
+  { year: "2014", competition: "RobotX", location: "Singapore" },
+  { year: "2016", competition: "RobotX", location: "Hawaii, USA" },
+  { year: "2018", competition: "RobotX", location: "Hawaii, USA" },
+  { year: "2022", competition: "RobotX", location: "Sydney, Australia" },
+  { year: "2022", competition: "VRX Competition", location: "Virtual" },
+  { year: "2023", competition: "VRX Competition", location: "Virtual" },
+  { year: "2024", competition: "RobotX", location: "Florida, USA" },
+  { year: "2025", competition: "SUAS", location: "Maryland, USA" },
+  { year: "2026", competition: "RobotX", location: "Singapore" },
 ];
 
 export default function AboutPage() {
@@ -79,33 +92,6 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* QUICK NAV CARDS */}
-          <section className="max-w-6xl mx-auto px-4 md:px-6 mt-6 mb-16">
-            <div className="grid gap-6 md:grid-cols-3">
-              <QuickCard
-                icon="👥"
-                title="Our Team"
-                description="Meet the diverse group of passionate students driving innovation in maritime robotics."
-                linkLabel="Explore"
-                href="/about/team"
-              />
-              <QuickCard
-                icon="🏆"
-                title="Achievements"
-                description="Discover our competition wins, technical milestones, and journey of excellence."
-                linkLabel="View Achievements"
-                href="/about/achievements"
-              />
-              <QuickCard
-                icon="🌐"
-                title="Outreach"
-                description="Explore our visits, demonstrations, and community engagement initiatives."
-                linkLabel="See Outreach"
-                href="/outreach"
-              />
-            </div>
-          </section>
-
           {/* ORIGIN STORY */}
           <section className="max-w-6xl mx-auto px-4 md:px-6 mb-16">
             <div className="grid gap-10 md:grid-cols-[1.4fr,1fr] items-start">
@@ -114,7 +100,7 @@ export default function AboutPage() {
                   🧭 Our Origin
                 </span>
                 <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
-                  How It All Started
+                  NTU's History
                 </h2>
                 <p className="text-sm md:text-base text-slate-600 leading-relaxed mb-4">
                   In 2012, Professor Xie Ming was invited by RoboNation to
@@ -147,115 +133,67 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* DIVERSE TEAM */}
-          <section className="max-w-6xl mx-auto px-4 md:px-6 mb-16">
-            <div className="text-center mb-8">
-              <span className="inline-flex items-center px-4 py-1 rounded-full bg-[#e6f7fa] text-xs font-semibold text-[#008fb3] shadow-sm mb-4">
-                👥 Team Composition
-              </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-6">
-                Our Diverse Team
-              </h2>
+          {/* TIMELINE SECTION */}
+          <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
+            <div className="mb-12">
+              <h2 className="text-4xl font-bold text-slate-900 mb-2">Competition Timeline</h2>
+              <p className="text-lg text-slate-600">Our journey through major competitions</p>
             </div>
-
-            <div className="bg-[#f1f9fb] border border-[#d7eef5] rounded-3xl px-6 md:px-10 py-8 md:py-10 text-center mb-8">
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed">
-                Our diverse and passionate team is made up of both undergraduate
-                and postgraduate students from various academic backgrounds,
-                including mechanical, electrical, and computer engineering. With
-                members from countries such as Singapore, China, Taiwan, India,
-                Vietnam, Malaysia, and America, we are a melting pot of
-                cultures, united by our shared dedication to robotics,
-                automation, and autonomous systems.
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              {/* Academic level */}
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm px-6 py-6 md:py-7">
-                <h3 className="text-xl font-semibold mb-6">Academic Level</h3>
-                <div className="space-y-5">
-                  <LevelRow label="Undergraduates" value="18" colorClass="bg-[#00a3b5]" />
-                  <LevelRow label="Postgraduates" value="14" colorClass="bg-[#22c55e]" />
-                </div>
-              </div>
-
-              {/* Engineering discipline */}
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm px-6 py-6 md:py-7">
-                <h3 className="text-xl font-semibold mb-6">
-                  Engineering Discipline
-                </h3>
-                <div className="space-y-4">
-                  <LevelRow
-                    label="Mechanical Engineering"
-                    value="19"
-                    colorClass="bg-[#059669]"
-                  />
-                  <LevelRow
-                    label="Smart Manufacturing"
-                    value="7"
-                    colorClass="bg-[#06b6d4]"
-                  />
-                  <LevelRow
-                    label="Electrical Engineering"
-                    value="4"
-                    colorClass="bg-[#8b5cf6]"
-                  />
-                  <LevelRow
-                    label="Computer Engineering"
-                    value="2"
-                    colorClass="bg-[#f97316]"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* NEWS & PROGRESS */}
-          <section className="max-w-6xl mx-auto px-4 md:px-6">
-            <div className="text-center mb-10">
-              <span className="inline-flex items-center px-4 py-1 rounded-full bg-[#e6f7fa] text-xs font-semibold text-[#008fb3] shadow-sm mb-4">
-                📢 Latest Updates
-              </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-3">
-                News &amp; Progress
-              </h2>
-              <p className="max-w-2xl mx-auto text-sm md:text-base text-slate-600">
-                Stay updated with our latest technical achievements and team
-                milestones.
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-3 mb-8">
-              {newsItems.map((item) => (
-                <article
-                  key={item.title}
-                  className="bg-white rounded-3xl border border-slate-200 shadow-sm px-6 py-6 hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col"
+            
+            <div className="space-y-6">
+              {timelineEvents.map((event, index) => (
+                <div
+                  key={index}
+                  className="flex gap-6 items-start"
                 >
-                  <span className="inline-flex w-fit px-3 py-1 rounded-full bg-[#e6f7fa] text-[11px] font-semibold text-[#008fb3] mb-3">
-                    {item.tag}
-                  </span>
-                  <h3 className="text-base md:text-lg font-semibold mb-2">
-                    {item.title}
-                  </h3>
-                  <div className="text-xs text-slate-500 mb-3">{item.date}</div>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    {item.summary}
-                  </p>
-                </article>
+                  {/* Timeline dot and line */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-4 h-4 bg-[#008fb3] rounded-full mt-2" />
+                    {index !== timelineEvents.length - 1 && (
+                      <div className="w-1 h-20 bg-gradient-to-b from-[#008fb3] to-[#008fb3]/30 my-2" />
+                    )}
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="pb-6">
+                    <h3 className="text-xl font-bold text-[#008fb3]">{event.year}</h3>
+                    <p className="text-lg font-semibold text-slate-900">{event.competition}</p>
+                    <p className="text-slate-600">{event.location}</p>
+                  </div>
+                </div>
               ))}
             </div>
-
-            <div className="text-center">
-              <Link
-                href="/news"
-                className="inline-flex items-center px-5 py-2.5 rounded-full bg-white text-sm font-semibold text-slate-800 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
-              >
-                View All News
-                <span className="ml-2">→</span>
-              </Link>
-            </div>
           </section>
+
+          { /* MARITIME ROBOTX CHALLENGE SECTION */ }
+          <section className="max-w-6xl mx-auto px-4 md:px-6">
+            <div className="grid gap-10 md:grid-cols-[1fr,1.2fr] items-center">
+              {/* Text Content */}
+              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-10">
+                <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
+                  Maritime RobotX Challenge
+                </h2>
+                <p className="text-sm md:text-base text-slate-600 leading-relaxed">
+                  Launched in 2012 by the U.S. Office of Naval Research (ONR) in collaboration with Singapore’s Future Technology Systems Directorate (FSTD), RobotX is an advanced robotics competition that brings together top teams from around the Pacific Rim. The competition focuses
+                  on the development of Autonomous Surface Vehicles (ASVs) and sensor technologies capable of performing complex tasks in dynamic maritime environments. Beyond the competition, RobotX serves as a platform to foster international collaboration between students,
+                  academic institutions, government agencies, and industry partners. It bridges research, commercial innovation, and defence applications, ensuring that solutions developed are both cutting-edge and practically relevant. Archimedes competes in the biennial RobotX Challenge,
+                  showcasing our capabilities in multi-domain robotics — operating on the surface, underwater, and in the air. In the 2024 edition, we achieved a 5th place finish and are now striving for a podium position in 2026.
+                </p>
+              </div>
+
+              {/* Image */}
+              <div className="relative rounded-3xl overflow-hidden shadow-md">
+                <Image
+                  src="/Section 4 - Maritime RobotX Challenge.jpeg"
+                  alt="Maritime RobotX Challenge"
+                  width={700}
+                  height={460}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+              </div>
+            </div>
+           </section>
         </div>
       </main>
     </>
