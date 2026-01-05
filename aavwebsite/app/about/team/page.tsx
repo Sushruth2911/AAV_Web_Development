@@ -1,52 +1,102 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/navbar";
 
-const teamMembers = [
-  {
-    name: "Lyn Bryan",
-    role: "CEO",
-    funFact: "Can recite the entire periodic table backwards while juggling.",
-    linkedin: "#",
-  },
-  {
-    name: "Lauren Pyloa",
-    role: "VP Growth & Development",
-    funFact: "Once won a hot dog eating contest at a tech conference.",
-    linkedin: "#",
-  },
-  {
-    name: "Raenee Thomas",
-    role: "VP Finance & Operations",
-    funFact: "Has a secret TikTok account with 50k followers doing spreadsheet ASMR.",
-    linkedin: "#",
-  },
-  {
-    name: "Mitchell Fawcett",
-    role: "VP Strategy",
-    funFact: "Believes pineapple on pizza is a valid strategic choice.",
-    linkedin: "#",
-  },
-  {
-    name: "Jivan Segal",
-    role: "VP Sales & Marketing",
-    funFact: "Can turn any conversation into a pitch, even at a dentist.",
-    linkedin: "#",
-  },
-  {
-    name: "Darren Maller",
-    role: "Creative Director",
-    funFact: "Argues with Figma like it's a person who owes him money.",
-    linkedin: "#",
-  },
+interface TeamMember {
+  name: string;
+  role: string;
+  photo?: string;
+  group: string;
+}
+
+const team2025_26: TeamMember[] = [
+  // Leads
+  { name: "Li Tz Yuan", role: "Team Lead", photo: "Li Tz Yuan.jpeg", group: "Leads" },
+  { name: "Li Tz Lung", role: "Deputy Team Lead", photo: "Li Tz Lung.jpeg", group: "Leads" },
+  { name: "Mayank Shandilya", role: "Deputy Team Lead", photo: "Mayank Shandilya.jpg", group: "Leads" },
+  { name: "Prof. Xie Ming", role: "Technical Advisor", photo: "Prof. Xie Ming.jpeg", group: "Leads" },
+  { name: "Prof. Erkan Kayacan", role: "Technical Advisor", photo: "Prof. Erkan Kayacan.jpg", group: "Leads" },
+  
+  // Mechanical
+  { name: "Marco Louis Rudyanto", role: "Mechanical Lead", group: "Mechanical" },
+  { name: "Rafid Akil", role: "Mechanical Member", photo: "Rafid Akil.jpg", group: "Mechanical" },
+  { name: "Vu Quang Hien", role: "Mechanical Member", photo: "Vu Quang Hien.jpg", group: "Mechanical" },
+  
+  // Electrical
+  { name: "Terry Teh", role: "Electrical Software Lead", photo: "Terry Teh.jpg", group: "Electrical" },
+  { name: "Vansh Jain", role: "Electrical Software Member", group: "Electrical" },
+  { name: "Ong Dun Yan", role: "Electrical Software Member", group: "Electrical" },
+  { name: "Ghosh Shoumil", role: "Electrical Hardware Lead", photo: "Ghosh Shoumil.jpg", group: "Electrical" },
+  { name: "Isita Singhai", role: "Electrical Hardware Member", group: "Electrical" },
+  { name: "Sakthi Deena", role: "Electrical Hardware Member", group: "Electrical" },
+  
+  // Software
+  { name: "Andre Khoo", role: "Perception Lead", photo: "Andre Khoo.jpg", group: "Software" },
+  { name: "Sujith Harirajan", role: "Perception Member", photo: "Sujith Harirajan.jpg", group: "Software" },
+  { name: "Samantha Ngeow", role: "Perception Member", photo: "Samantha Ngeow.jpg", group: "Software" },
+  { name: "Aloysius Chia", role: "Perception Member", photo: "Aloysius Chia.jpeg", group: "Software" },
+  { name: "Dinh Quang Anh", role: "Perception Member", photo: "Dinh Quang Anh.jpg", group: "Software" },
+  { name: "Ryan Wong", role: "Planning Lead", photo: "Ryan Wong.jpg", group: "Software" },
+  { name: "Khai Nguyen", role: "Planning Member", group: "Software" },
+  { name: "Maaya Juneja", role: "Planning Member", group: "Software" },
+  { name: "Wesley Koh", role: "Planning Member", group: "Software" },
+  { name: "Weng Shizhuo", role: "Controls Lead", photo: "Weng Shizhuo.jpg", group: "Software" },
+  { name: "Josiah Wei", role: "Controls Member", photo: "Josiah Wei.jpg", group: "Software" },
+  { name: "Karthik Mepurath", role: "Controls Member", photo: "Karthik Mepurath.jpg", group: "Software" },
+  { name: "Akshay Viswanath", role: "Communications Lead", photo: "Akshay Viswanath.png", group: "Software" },
+  { name: "Ryan Chen", role: "Communications Member", photo: "Ryan Chen.jpg", group: "Software" },
+  { name: "Alankritha Thaigarajan", role: "Communications Member", photo: "Alankritha Thaigarajan.jpg", group: "Software" },
+  { name: "Racshanyaa Jagadish", role: "Communications Member", group: "Software" },
+  
+  // UAV
+  { name: "Chan Jin You", role: "UAV Lead", photo: "Chan Jin You.jpg", group: "UAV" },
+  { name: "Hu Tingli", role: "UAV Member", photo: "Hu Tingli.jpg", group: "UAV" },
+  { name: "Vishnu Venkatesan", role: "UAV Member", group: "UAV" },
+  { name: "Sujith Harirajan", role: "UAV Member", photo: "Sujith Harirajan.jpg", group: "UAV" },
+  
+  // Acoustics
+  { name: "Rithvik Ravikumar", role: "Acoustics Lead", photo: "Rithvik Ravikumar.jpg", group: "Acoustics" },
+  { name: "Harshan Elangovan", role: "Acoustics Member", photo: "Harshan Elangovan.jpg", group: "Acoustics" },
+  { name: "Saanvi Khemka", role: "Acoustics Member", photo: "Saanvi Khemka.jpg", group: "Acoustics" },
+  
+  // Business Management
+  { name: "Li Tz Yuan", role: "Biz Mag Lead", photo: "Li Tz Yuan.jpeg", group: "Business Management" },
+  { name: "Li Tz Lung", role: "Biz Mag Lead", photo: "Li Tz Lung.jpeg", group: "Business Management" },
+  { name: "Arun Thiru", role: "Biz Mag Member", photo: "Arun Thiru.jpg", group: "Business Management" },
+  { name: "Sametha Sampathkumar", role: "Biz Mag Member", photo: "Sametha Sampathkumar.jpg", group: "Business Management" },
+  
+  // Web Development
+  { name: "Sushruth Muthukrishnan", role: "Web Dev Lead", photo: "Sushruth Muthukrishnan.jpeg", group: "Web Development" },
+  { name: "Murugappan Venkatesh", role: "Web Dev Member", group: "Web Development" },
+  { name: "Dinh Quang Anh", role: "Web Dev Member", photo: "Dinh Quang Anh.jpg", group: "Web Development" },
+  { name: "Racshanyaa Jagadish", role: "Web Dev Member", group: "Web Development" },
+  
+  // Media & Publicity
+  { name: "Dawn Tan", role: "Creative Director", photo: "Dawn Tan.jpg", group: "Media & Publicity" },
+  { name: "Teoh Sim Kee", role: "Graphic Designer", group: "Media & Publicity" },
+  { name: "Keefe Chen", role: "3D Artist", group: "Media & Publicity" },
+  { name: "Megan Lim", role: "Cinematographer & Video Producer", group: "Media & Publicity" },
+  { name: "Megan Tan", role: "Cinematographer & Video Producer", group: "Media & Publicity" },
+  { name: "Jaime Aw", role: "Video Editor & Effects Specialist", photo: "Jaime Aw.jpg", group: "Media & Publicity" },
+  
+  // Logistics
+  { name: "Aaditya Gunda", role: "Logs Lead", photo: "Aaditya Gunda.jpg", group: "Logistics" },
 ];
 
-const compositionStats = [
-  { label: "Executive", value: "55%" },
-  { label: "Design", value: "11%" },
-  { label: "Sales", value: "11%" },
-  { label: "Leadership", value: "23%" },
+const groupOrder = [
+  "Leads",
+  "Mechanical",
+  "Electrical",
+  "Software",
+  "UAV",
+  "Acoustics",
+  "Business Management",
+  "Web Development",
+  "Media & Publicity",
+  "Logistics",
 ];
 
 function getInitials(name: string) {
@@ -57,258 +107,175 @@ function getInitials(name: string) {
     .toUpperCase();
 }
 
+function TeamMemberCard({ member }: { member: TeamMember }) {
+  const [imageError, setImageError] = useState(false);
+  const hasPhoto = member.photo && !imageError;
+
+  return (
+    <div className="group bg-[#181818] border border-[#1e1e1e] rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-white/20 flex flex-col items-center text-center">
+      {/* Avatar */}
+      <div className="relative mb-4">
+        <div className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300" style={{ backgroundColor: '#3652A4' }} />
+        <div className="relative w-24 h-24 rounded-full overflow-hidden ring-2 bg-[#1e1e1e]" style={{ ringColor: '#1e1e1e' }}>
+          {hasPhoto ? (
+            <Image
+              src={`/Team/${member.photo}`}
+              alt={member.name}
+              fill
+              className="object-cover"
+              style={{ objectPosition: 'center 20%' }}
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #3652A4, #00824E)' }}>
+              <span className="text-xl font-extrabold text-white">
+                {getInitials(member.name)}
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Name + Role */}
+      <h3 className="text-lg font-semibold mb-1 text-white">
+        {member.name}
+      </h3>
+      <p className="text-sm font-medium" style={{ color: '#3652A4' }}>
+        {member.role}
+      </p>
+    </div>
+  );
+}
+
 export default function TeamPage() {
+  const [activeTab, setActiveTab] = useState("2025/26");
+
+  // Group team members by their group
+  const groupedMembers = team2025_26.reduce((acc, member) => {
+    if (!acc[member.group]) {
+      acc[member.group] = [];
+    }
+    acc[member.group].push(member);
+    return acc;
+  }, {} as Record<string, TeamMember[]>);
+
   return (
     <>
       <Navbar />
 
-      {/* Page background with subtle gradient + blobs */}
-      <main className="min-h-screen bg-linear-to-b from-[#020617] via-[#020617] to-[#020617] text-slate-50">
-        <div className="relative pt-28 pb-20">
+      <main className="min-h-screen bg-[#121212] text-white font-sans">
+        <div className="relative pt-32 pb-20">
           {/* Glowing blobs */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div className="absolute -top-24 -left-32 h-72 w-72 rounded-full bg-teal-500/10 blur-3xl" />
-            <div className="absolute top-40 -right-24 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
-            <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-emerald-400/5 blur-3xl" />
+            <div className="absolute -top-24 -left-32 h-72 w-72 rounded-full blur-3xl opacity-20" style={{ backgroundColor: 'rgba(54,82,164,0.3)' }} />
+            <div className="absolute top-40 -right-24 h-72 w-72 rounded-full blur-3xl opacity-15" style={{ backgroundColor: 'rgba(0,130,78,0.2)' }} />
           </div>
 
-          <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-0">
+          <div className="relative max-w-7xl mx-auto px-4 md:px-6 lg:px-0">
             {/* Back link */}
             <Link
               href="/"
-              className="inline-flex items-center text-sm text-teal-300 hover:text-teal-200 hover:underline mb-6 transition-colors"
+              className="inline-flex items-center text-sm mb-6 hover:underline transition-colors"
+              style={{ color: '#9AB0B8' }}
             >
               ← Back to Home
             </Link>
 
             {/* HERO SECTION */}
-            <section className="text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-linear-to-r from-teal-500/20 via-cyan-400/20 to-sky-500/20 border border-teal-400/40 text-xs font-medium text-teal-200 shadow-[0_0_40px_rgba(45,212,191,0.35)] mb-4">
+            <section className="text-center mb-12">
+              <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-medium mb-4 backdrop-blur-md shadow-sm" style={{ color: '#9AB0B8' }}>
                 <span className="text-sm">👥</span>
-                Our Team 2025
+                Our Team
               </span>
 
-              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
                 Meet the Innovators
                 <br />
                 Behind{" "}
-                <span className="bg-linear-to-r from-teal-300 via-cyan-300 to-sky-300 bg-clip-text text-transparent">
+                <span 
+                  className="bg-clip-text text-transparent"
+                  style={{ 
+                    backgroundImage: 'linear-gradient(to right, #3652A4, #00824E)'
+                  }}
+                >
                   Our Success
                 </span>
               </h1>
 
-              <p className="max-w-2xl mx-auto text-base md:text-lg text-slate-300/90">
+              <p className="max-w-2xl mx-auto text-base md:text-lg" style={{ color: '#9AB0B8' }}>
                 A diverse team of passionate experts driving innovation in
                 autonomous maritime systems and shaping the future of ocean
                 technology.
               </p>
             </section>
 
-            {/* TEAM CARDS GRID */}
-            <section className="mb-20">
-              <div className="grid gap-8 md:grid-cols-3">
-                {teamMembers.map((member, index) => (
-                  <article
-                    key={member.name}
-                    className="group bg-linear-to-b from-slate-900/70 via-slate-900/80 to-slate-950/90 rounded-3xl border border-slate-700/70 shadow-[0_18px_45px_rgba(15,23,42,0.85)] flex flex-col items-center text-center px-6 py-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_70px_rgba(34,211,238,0.35)] hover:border-teal-400/70"
-                    style={{
-                      // tiny staggered animation feeling on load
-                      animation: `fadeUp 0.6s ease forwards`,
-                      animationDelay: `${index * 0.05}s`,
-                      opacity: 0,
-                    } as React.CSSProperties}
-                  >
-                    {/* Avatar placeholder (gradient ring, initials) */}
-                    <div className="relative mb-6">
-                      <div className="absolute inset-0 rounded-full bg-teal-400/40 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="relative w-28 h-28 rounded-full bg-linear-to-br from-teal-500 via-cyan-500 to-sky-500 flex items-center justify-center ring-4 ring-slate-900">
-                        <span className="text-2xl font-extrabold text-slate-950 drop-shadow-sm">
-                          {getInitials(member.name)}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Name + Role */}
-                    <h3 className="text-xl font-semibold mb-1 text-slate-50">
-                      {member.name}
-                    </h3>
-                    <p className="text-sm font-medium text-teal-300 mb-6">
-                      {member.role}
-                    </p>
-
-                    {/* Fun fact */}
-                    <div className="w-full bg-slate-900/80 rounded-2xl border border-teal-500/25 px-4 py-4 text-left mb-6 backdrop-blur-sm">
-                      <div className="inline-flex items-center px-2 py-1 rounded-full bg-slate-900/80 text-[11px] font-semibold text-teal-200 mb-2 border border-teal-500/40">
-                        Fun Fact
-                      </div>
-                      <p className="text-sm text-slate-200/90 italic leading-relaxed">
-                        {member.funFact}
-                      </p>
-                    </div>
-
-                    {/* LinkedIn button */}
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-auto inline-flex items-center justify-center w-full rounded-full bg-linear-to-r from-teal-400 via-cyan-400 to-sky-400 text-slate-950 text-sm font-semibold py-2.5 hover:brightness-110 hover:shadow-[0_0_25px_rgba(56,189,248,0.7)] transition-all"
-                    >
-                      <span className="mr-2">🔗</span>
-                      Connect on LinkedIn
-                    </a>
-                  </article>
-                ))}
-              </div>
-            </section>
-
-            {/* TEAM COMPOSITION */}
-            <section className="mb-20">
-              <div className="text-center mb-10">
-                <span className="inline-flex items-center px-4 py-1 rounded-full bg-teal-500/15 text-xs font-medium text-teal-200 mb-4 border border-teal-400/30">
-                  📊 Team Breakdown
-                </span>
-                <h2 className="text-3xl md:text-4xl font-extrabold mb-3">
-                  Our Team Composition
-                </h2>
-                <p className="max-w-2xl mx-auto text-slate-300/90 text-sm md:text-base">
-                  A balanced mix of leadership, strategy, design, and business
-                  expertise working together towards a common goal.
-                </p>
-              </div>
-
-              <div className="grid gap-10 md:grid-cols-[1.1fr,1fr] items-center">
-                {/* Circular “chart” placeholder */}
-                <div className="flex items-center justify-center">
-                  <div className="relative w-64 h-64 rounded-full bg-slate-900 shadow-[0_18px_50px_rgba(15,23,42,0.9)] overflow-hidden">
-                    {/* fake segments with gradients */}
-                    <div className="absolute inset-0 bg-[conic-gradient(from_220deg,rgba(45,212,191,0.8)_0deg,rgba(45,212,191,0.8)_200deg,rgba(56,189,248,0.9)_200deg,rgba(56,189,248,0.9)_260deg,rgba(129,140,248,0.9)_260deg,rgba(129,140,248,0.9)_320deg,rgba(15,23,42,1)_320deg,rgba(15,23,42,1)_360deg)]" />
-                    <div className="absolute inset-8 rounded-full bg-slate-950" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center px-6">
-                        <div className="text-xs uppercase tracking-[0.2em] text-slate-400 mb-1">
-                          Team Mix
-                        </div>
-                        <div className="text-sm text-slate-200">
-                          Visual representation of leadership, design, sales &
-                          strategy.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Stat cards */}
-                <div className="space-y-4">
-                  {compositionStats.map((item) => (
-                    <div
-                      key={item.label}
-                      className="flex items-center justify-between bg-slate-900/80 rounded-2xl shadow-[0_16px_40px_rgba(15,23,42,0.7)] border border-slate-700/70 px-6 py-4 backdrop-blur-sm hover:border-teal-400/60 hover:shadow-[0_20px_55px_rgba(45,212,191,0.45)] transition-all"
-                    >
-                      <div>
-                        <div className="font-semibold text-slate-50">
-                          {item.label}
-                        </div>
-                        <div className="text-xs text-slate-400">
-                          Team department
-                        </div>
-                      </div>
-                      <div className="text-teal-300 font-extrabold text-xl">
-                        {item.value}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            {/* BEHIND THE SCENES – gradient tiles */}
-            <section className="mb-20">
-              <div className="text-center mb-10">
-                <span className="inline-flex items-center px-4 py-1 rounded-full bg-cyan-500/15 text-xs font-medium text-cyan-200 mb-4 border border-cyan-400/30">
-                  🎥 Team Moments
-                </span>
-                <h2 className="text-3xl md:text-4xl font-extrabold mb-3">
-                  Behind the Scenes
-                </h2>
-                <p className="max-w-2xl mx-auto text-slate-300/90 text-sm md:text-base">
-                  Capturing the spirit of collaboration and camaraderie that
-                  drives our team forward.
-                </p>
-              </div>
-
-              <div className="grid gap-8 md:grid-cols-2">
-                {/* Card 1 */}
-                <div className="relative rounded-3xl overflow-hidden shadow-[0_22px_60px_rgba(34,211,238,0.45)] bg-linear-to-br from-teal-500 via-cyan-500 to-sky-500 p-6 md:p-8 flex flex-col justify-end min-h-[220px] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(34,211,238,0.75)]">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(248,250,252,0.35),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.55),transparent_60%)]" />
-                  <div className="relative">
-                    <h3 className="text-lg font-semibold mb-1 text-slate-950 drop-shadow-sm">
-                      Our Team
-                    </h3>
-                    <p className="text-sm text-slate-900/80">
-                      United in our mission to innovate and excel in autonomous
-                      maritime technology.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Card 2 */}
-                <div className="relative rounded-3xl overflow-hidden shadow-[0_22px_60px_rgba(251,191,36,0.45)] bg-linear-to-br from-amber-400 via-orange-500 to-rose-500 p-6 md:p-8 flex flex-col justify-end min-h-[220px] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(248,113,113,0.75)]">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(248,250,252,0.35),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.65),transparent_60%)]" />
-                  <div className="relative">
-                    <h3 className="text-lg font-semibold mb-1 text-slate-950 drop-shadow-sm">
-                      Team Bonding
-                    </h3>
-                    <p className="text-sm text-slate-900/85">
-                      Building stronger connections through shared experiences
-                      and memorable moments.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* CTA SECTION */}
-            <section className="border-t border-slate-800 pt-12 pb-4 text-center">
-              <h2 className="text-2xl md:text-3xl font-extrabold mb-3">
-                Want to Join Our Team?
-              </h2>
-              <p className="max-w-xl mx-auto text-slate-300/90 text-sm md:text-base mb-6">
-                We&apos;re always looking for talented individuals who share our
-                passion for innovation and excellence.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
-                  href="/careers"
-                  className="inline-flex items-center justify-center px-7 py-2.5 rounded-full bg-linear-to-r from-teal-400 via-cyan-400 to-sky-400 text-slate-950 text-sm font-semibold shadow-[0_0_25px_rgba(56,189,248,0.7)] hover:brightness-110 hover:shadow-[0_0_35px_rgba(45,212,191,0.9)] transition-all"
+            {/* TABS */}
+            <section className="mb-12">
+              <div className="flex justify-center gap-4 border-b" style={{ borderColor: '#1e1e1e' }}>
+                <button
+                  onClick={() => setActiveTab("2025/26")}
+                  className={`px-6 py-3 text-sm font-semibold transition-all duration-300 relative ${
+                    activeTab === "2025/26" ? "text-white" : "text-gray-400"
+                  }`}
+                  style={activeTab === "2025/26" ? {
+                    borderBottom: "2px solid #3652A4"
+                  } : {}}
                 >
-                  View Open Positions
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center px-7 py-2.5 rounded-full border border-slate-600 bg-slate-900/70 text-sm font-semibold text-slate-50 hover:border-teal-300 hover:bg-slate-900/90 transition-all"
-                >
-                  Get in Touch
-                </Link>
+                  2025/26
+                </button>
+                {/* Add more tabs here in the future */}
               </div>
             </section>
+
+            {/* TEAM CONTENT */}
+            {activeTab === "2025/26" && (
+              <div className="space-y-16">
+                {/* Team Photo */}
+                <section>
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl md:text-4xl font-extrabold mb-3 text-white">
+                      Team Photo
+                    </h2>
+                  </div>
+                  <div className="relative w-full rounded-3xl overflow-hidden border border-[#1e1e1e] bg-[#181818] shadow-lg">
+                    <div className="relative aspect-video w-full">
+                      <Image
+                        src="/Team/1. Team Photo.png"
+                        alt="Team Photo 2025/26"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                </section>
+
+                {/* Group Sections */}
+                {groupOrder.map((groupName) => {
+                  const members = groupedMembers[groupName] || [];
+                  if (members.length === 0) return null;
+
+                  return (
+                    <section key={groupName} className="mb-16">
+                      <div className="mb-8">
+                        <h2 className="text-2xl md:text-3xl font-extrabold mb-2 text-white">
+                          {groupName}
+                        </h2>
+                        <div className="h-1 w-20 rounded-full" style={{ backgroundColor: '#3652A4' }}></div>
+                      </div>
+
+                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        {members.map((member, index) => (
+                          <TeamMemberCard key={`${member.name}-${index}`} member={member} />
+                        ))}
+                      </div>
+                    </section>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </main>
-
-      {/* Tiny inline keyframe for fadeUp animation (safe, optional) */}
-      <style jsx>{`
-        @keyframes fadeUp {
-          0% {
-            transform: translateY(12px);
-            opacity: 0;
-          }
-          100% {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-      `}</style>
     </>
   );
 }

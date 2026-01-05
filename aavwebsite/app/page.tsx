@@ -4,6 +4,7 @@ import Prism from "@/components/Prism";
 import SplitText from "@/components/SplitText";
 import CardSwap, { Card } from "@/components/CardSwap";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 
 function TypingCaption() {
@@ -93,7 +94,7 @@ export default function Home() {
         {/* Prism Background */}
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0, opacity: 0.9 }}>
           <Prism
-            animationType="hover"
+            animationType="rotate"
             timeScale={0.5}
             height={2}
             baseWidth={4}
@@ -105,8 +106,6 @@ export default function Home() {
           />
         </div>
         
-        {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#121212]/40 via-[#121212]/20 to-[#121212]/50 z-[2]"></div>
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 -mt-25">
           <style jsx>{`
             @keyframes glow-pulse {
@@ -223,21 +222,17 @@ export default function Home() {
             }
           `}</style>
           <div className="relative w-full max-w-7xl mx-auto">
-            <div className="hero-text">
-              <SplitText
-                text="Archimedes Autonomous Vehicles"
-                className="text-[4.25rem] md:text-[7.75rem] lg:text-[9.75rem] font-black tracking-tighter"
-                delay={80}
-                duration={1}
-                ease="power4.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 60, scale: 0.7, rotationX: -90 }}
-                to={{ opacity: 1, y: 0, scale: 1, rotationX: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="center"
-                tag="h1"
-              />
+              <div className="hero-text flex justify-center items-center">
+              <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                <Image
+                  src="/Updated AAV Logo (White).png"
+                  alt="Archimedes Autonomous Vehicles"
+                  width={1200}
+                  height={300}
+                  className="w-auto h-40 md:h-56 lg:h-72 object-contain"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -281,8 +276,13 @@ export default function Home() {
                     <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent"></div>
                   </div>
                   {/* Photo Space */}
-                  <div className="mb-4 w-full h-48 rounded-md bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-white/5 flex items-center justify-center overflow-hidden">
-                    <span className="text-gray-500 text-sm">Photo placeholder</span>
+                  <div className="mb-4 w-full h-48 rounded-md overflow-hidden border border-white/5 relative">
+                    <Image
+                      src="/AAV Pic from RobotX.jpeg"
+                      alt="AAV at RobotX"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div className="mb-6">
                     <h3 className="text-2xl font-bold mb-3 text-white">Pushing Boundaries 🚀</h3>
@@ -303,8 +303,13 @@ export default function Home() {
                     <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent"></div>
                   </div>
                   {/* Photo Space */}
-                  <div className="mb-4 w-full h-48 rounded-md bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-white/5 flex items-center justify-center overflow-hidden">
-                    <span className="text-gray-500 text-sm">Photo placeholder</span>
+                  <div className="mb-4 w-full h-48 rounded-md overflow-hidden border border-white/5 relative">
+                    <Image
+                      src="/AAV Pic with ASV.jpeg"
+                      alt="AAV with ASV"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div className="mb-6">
                     <h3 className="text-2xl font-bold mb-3 text-white">Advanced Solutions ⚡</h3>
@@ -326,8 +331,13 @@ export default function Home() {
                     <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent"></div>
                   </div>
                   {/* Photo Space */}
-                  <div className="mb-4 w-full h-48 rounded-md bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-white/5 flex items-center justify-center overflow-hidden">
-                    <span className="text-gray-500 text-sm">Photo placeholder</span>
+                  <div className="mb-4 w-full h-48 rounded-md overflow-hidden border border-white/5 relative">
+                    <Image
+                      src="/AAV Team Pic.jpeg"
+                      alt="AAV Team"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div className="mb-6">
                     <h3 className="text-2xl font-bold mb-3 text-white">Next Generation 🌐</h3>

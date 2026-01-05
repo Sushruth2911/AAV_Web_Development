@@ -278,24 +278,24 @@ export default function AchievementsPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#f5f7f9] text-slate-900">
+      <main className="min-h-screen bg-[#121212] text-white font-sans">
         <div className="pt-28 pb-20 max-w-6xl mx-auto px-4 md:px-6 lg:px-0">
           {/* Back link */}
           <Link
             href="/"
-            className="inline-flex items-center text-sm text-[#008fb3] hover:underline mb-6"
+            className="inline-flex items-center text-sm mb-6 hover:underline transition-all" style={{ color: '#9AB0B8' }}
           >
             ← Back to Home
           </Link>
 
           {/* SECTION 1 – VRX 2022 */}
           <section className="mb-20 text-center">
-            <span className="inline-flex items-center px-4 py-1 rounded-full bg-[#e6f7fa] text-xs font-semibold text-[#008fb3] mb-4 shadow-sm">
+            <span className="inline-flex items-center px-4 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold mb-4 shadow-sm backdrop-blur-md" style={{ color: '#9AB0B8' }}>
               🏆 Achievements
             </span>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
-              Virtual RobotX <span className="text-[#008fb3]">2022</span>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-white">
+              Virtual RobotX <span style={{ color: '#3652A4' }}>2022</span>
             </h1>
 
             {/* Stats row */}
@@ -311,13 +311,13 @@ export default function AchievementsPage() {
               {vrxAwards.map((award) => (
                 <div
                   key={award.title}
-                  className="flex flex-col items-start text-left bg-white rounded-3xl border border-slate-200 shadow-sm px-6 py-5 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+                  className="flex flex-col items-start text-left bg-[#181818] border border-[#1e1e1e] rounded-3xl shadow-sm px-6 py-5 hover:shadow-lg hover:-translate-y-1 hover:border-white/20 transition-all duration-200"
                 >
                   <div className="text-2xl mb-3">{award.icon}</div>
-                  <h3 className="text-base md:text-lg font-semibold mb-1">
+                  <h3 className="text-base md:text-lg font-semibold mb-1 text-white">
                     {award.title}
                   </h3>
-                  <p className="text-sm text-slate-500">{award.subtitle}</p>
+                  <p className="text-sm" style={{ color: '#9AB0B8' }}>{award.subtitle}</p>
                 </div>
               ))}
             </div>
@@ -326,13 +326,13 @@ export default function AchievementsPage() {
           {/* SECTION 2 – OUR JOURNEY SO FAR */}
           <section>
             <div className="text-center mb-10">
-              <span className="inline-flex items-center px-4 py-1 rounded-full bg-[#e6f7fa] text-xs font-semibold text-[#008fb3] mb-4 shadow-sm">
+              <span className="inline-flex items-center px-4 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold mb-4 shadow-sm backdrop-blur-md" style={{ color: '#9AB0B8' }}>
                 📍 Our Journey
               </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-2">
+              <h2 className="text-3xl md:text-4xl font-extrabold mb-2 text-white">
                 Our Journey So Far
               </h2>
-              <p className="text-sm md:text-base text-slate-500">
+              <p className="text-sm md:text-base" style={{ color: '#9AB0B8' }}>
                 Nov 2023 – Oct 2024
               </p>
             </div>
@@ -347,9 +347,16 @@ export default function AchievementsPage() {
                     onClick={() => setActiveCategory(cat)}
                     className={`px-4 py-1.5 text-xs md:text-sm rounded-full border transition-all duration-200 transform ${
                       isActive
-                        ? "bg-[#008fb3] text-white border-[#008fb3] shadow-md scale-105"
-                        : "bg-[#e5f1f5] text-slate-700 border-transparent hover:bg-[#d7e8ee] hover:shadow-sm hover:scale-105"
+                        ? "shadow-md scale-105"
+                        : "bg-[#181818] border-[#1e1e1e] hover:border-white/20 hover:shadow-sm hover:scale-105"
                     }`}
+                    style={isActive ? {
+                      backgroundColor: '#3652A4',
+                      color: '#FFFFFF',
+                      borderColor: '#3652A4'
+                    } : {
+                      color: '#9AB0B8'
+                    }}
                   >
                     {cat}
                   </button>
@@ -362,13 +369,17 @@ export default function AchievementsPage() {
               {/* Center vertical line + moving boat */}
               <div className="hidden md:block absolute left-1/2 top-0 h-full w-0 -translate-x-1/2 pointer-events-none">
                 {/* Line */}
-                <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[#b7e3ec]" />
+                <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2" style={{ backgroundColor: '#1e1e1e' }} />
                 {/* Boat that travels */}
                 <div
-                  className="absolute left-1/2 w-12 h-12 rounded-full bg-[#e6f7fa] flex items-center justify-center shadow-lg -translate-x-1/2 -translate-y-1/2 transition-transform duration-150"
-                  style={{ top: `${boatProgress * 100}%` }}
+                  className="absolute left-1/2 w-12 h-12 rounded-full flex items-center justify-center shadow-lg -translate-x-1/2 -translate-y-1/2 transition-transform duration-150 border-2"
+                  style={{ 
+                    top: `${boatProgress * 100}%`,
+                    backgroundColor: '#181818',
+                    borderColor: '#3652A4'
+                  }}
                 >
-                  <span className="text-[#008fb3] text-2xl">🚤</span>
+                  <span className="text-2xl">🚤</span>
                 </div>
               </div>
 
@@ -399,7 +410,7 @@ export default function AchievementsPage() {
 
                       {/* Center dot */}
                       <div className="hidden md:flex w-0 md:w-auto md:flex-col md:items-center">
-                        <div className="relative w-3 h-3 rounded-full bg-[#008fb3] border-4 border-[#e6f7fa] shadow-md" />
+                        <div className="relative w-3 h-3 rounded-full shadow-md border-2" style={{ backgroundColor: '#3652A4', borderColor: '#181818' }} />
                       </div>
 
                       {/* Right column */}
@@ -440,9 +451,9 @@ export default function AchievementsPage() {
 /* Stat block for VRX numbers */
 function StatBlock({ label, value }: { label: string; value: string }) {
   return (
-    <div className="text-center px-4 py-2 rounded-2xl bg-white shadow-sm border border-slate-200 hover:shadow-md hover:-translate-y-1 transition-all duration-200">
-      <div className="text-4xl font-extrabold text-[#008fb3]">{value}</div>
-      <div className="text-xs uppercase tracking-wide text-slate-500 mt-1">
+    <div className="text-center px-4 py-2 rounded-2xl bg-[#181818] border border-[#1e1e1e] shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-white/20 transition-all duration-200">
+      <div className="text-4xl font-extrabold" style={{ color: '#3652A4' }}>{value}</div>
+      <div className="text-xs uppercase tracking-wide mt-1" style={{ color: '#9AB0B8' }}>
         {label}
       </div>
     </div>
@@ -458,16 +469,16 @@ function TimelineCard(props: {
   const { monthYear, category, title } = props;
 
   return (
-    <div className="bg-white rounded-3xl border border-slate-200 shadow-sm px-6 py-5 max-w-md hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
+    <div className="bg-[#181818] border border-[#1e1e1e] rounded-3xl shadow-sm px-6 py-5 max-w-md hover:shadow-lg hover:-translate-y-1 hover:border-white/20 transition-all duration-200">
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-xs font-semibold text-slate-600 px-3 py-1 rounded-full bg-[#e6f7fa]">
+        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md" style={{ color: '#9AB0B8' }}>
           {category}
         </span>
-        <span className="text-xs font-semibold text-[#008fb3]">
+        <span className="text-xs font-semibold" style={{ color: '#3652A4' }}>
           {monthYear}
         </span>
       </div>
-      <p className="text-sm md:text-base text-slate-800 leading-snug">{title}</p>
+      <p className="text-sm md:text-base text-white leading-snug">{title}</p>
     </div>
   );
 }

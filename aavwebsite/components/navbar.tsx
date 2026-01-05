@@ -559,8 +559,34 @@
 "use client";
 
 import CardNav from './CardNav';
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
+  const [isVisible, setIsVisible] = useState(true);
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
+  useEffect(() => {
+    if (!isHomePage) {
+      // Always visible on non-home pages
+      setIsVisible(true);
+      return;
+    }
+
+    // On home page, hide initially and show after scrolling
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      setIsVisible(scrollPosition > viewportHeight * 0.8);
+    };
+
+    // Check initial scroll position
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHomePage]);
+
   const items = [
     {
       label: "About",
@@ -570,7 +596,6 @@ export default function Navbar() {
         { label: "About Us", href: "/about/aboutus", ariaLabel: "About Us" },
         { label: "Our Team", href: "/about/team", ariaLabel: "Our Team" },
         { label: "Achievements", href: "/about/achievements", ariaLabel: "Achievements" },
-        { label: "News", href: "/about/news", ariaLabel: "News" }
       ]
     },
     {
@@ -608,16 +633,20 @@ export default function Navbar() {
       textColor: "#fff",
       links: [
         { label: "Shop", href: "/shop", ariaLabel: "Shop" },
-        { label: "Newsroom", href: "/newsroom", ariaLabel: "Newsroom" },
+        { label: "Newsroom", href: "/about/news", ariaLabel: "Newsroom" },
         { label: "Contact", href: "/contact", ariaLabel: "Contact" }
       ]
     }
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
+    <header 
+      className={`fixed top-0 left-0 w-full z-50 transition-opacity duration-500 ${
+        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}
+    >
       <CardNav
-        logo="/aavlogo.jpg"
+        logo="/Updated AAV Logo (White).png"
         logoAlt="AAV Logo"
         items={items}
         baseColor="#fff"

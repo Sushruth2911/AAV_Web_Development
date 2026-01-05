@@ -45,14 +45,14 @@ export default function OutreachPage() {
 
       {/* match Home page shell */}
       <main className="bg-[#121212] text-white font-sans min-h-screen">
-        {/* HERO (same vibe as Home’s trailer block) */}
-        <section className="py-24 text-center border-b border-[#1e1e1e] relative">
-          <div className="pointer-events-none absolute inset-0 mask-[radial-gradient(70%_60%_at_50%_0%,black_40%,transparent_80%)] bg-[radial-gradient(1200px_500px_at_50%_-10%,rgba(14,165,233,.12),transparent)]" />
-          <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
+        {/* HERO (same vibe as Home's trailer block) */}
+        <section className="pt-32 pb-24 text-center border-b border-[#1e1e1e] relative">
+          <div className="pointer-events-none absolute inset-0 mask-[radial-gradient(70%_60%_at_50%_0%,black_40%,transparent_80%)]" style={{ background: 'radial-gradient(1200px 500px at 50% -10%, rgba(54,82,164,0.12), transparent)' }} />
+          <h2 className="text-4xl md:text-6xl font-extrabold leading-tight text-white">
             Building Connections <br className="hidden md:block" />
-            Through <span className="bg-linear-to-r from-sky-500 to-cyan-400 bg-clip-text text-transparent">Innovation</span>
+            Through <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(to right, #3652A4, #00824E)' }}>Innovation</span>
           </h2>
-          <p className="mt-6 max-w-3xl mx-auto text-zinc-300">
+          <p className="mt-6 max-w-3xl mx-auto" style={{ color: '#9AB0B8' }}>
             Showcasing our Autonomous Maritime System to global leaders in education and government.
           </p>
         </section>
@@ -98,28 +98,37 @@ function BentoCard({
   const aspect = variant === "feature" ? "aspect-[2/1] min-h-[360px]" : "aspect-[16/10] min-h-[220px]";
 
   return (
-    <Link href={item.href} className={`${surface} block`}>
+    <Link href={item.href} className={`${surface} block hover:border-white/20`}>
       {/* decorative, subtle gradients per category */}
-      <div className={`absolute inset-0 opacity-40 ${gradientClass(item.category)}`} />
+      <div 
+        className="absolute inset-0 opacity-20" 
+        style={{
+          background: item.category.includes("Ministerial") || item.category.includes("Government") 
+            ? 'radial-gradient(900px 600px at 50% -10%, rgba(54,82,164,0.3), transparent)'
+            : item.category.includes("Student") || item.category.includes("Talent")
+            ? 'radial-gradient(900px 600px at 50% -10%, rgba(0,130,78,0.3), transparent)'
+            : 'radial-gradient(900px 600px at 50% -10%, rgba(54,82,164,0.2), transparent)'
+        }}
+      />
       {/* faint grid texture */}
       <div className="absolute inset-0 mask-[linear-gradient(to_bottom,black,transparent_90%)] bg-[linear-gradient(#ffffff10_1px,transparent_1px),linear-gradient(90deg,#ffffff10_1px,transparent_1px)] bg-size-[20px_20px] opacity-[.06]" />
 
       <div className={`relative ${aspect} p-6 md:p-7 flex flex-col justify-end`}>
         <div className="absolute left-6 right-6 top-6">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-zinc-200 ring-1 ring-white/10">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium ring-1 ring-white/10 backdrop-blur-md" style={{ color: '#9AB0B8' }}>
             <Dot className="h-3 w-3" /> {item.category}
           </span>
         </div>
 
-        <h3 className={variant === "feature" ? "text-2xl md:text-3xl font-semibold" : "text-lg md:text-xl font-semibold"}>
+        <h3 className={`${variant === "feature" ? "text-2xl md:text-3xl font-semibold" : "text-lg md:text-xl font-semibold"} text-white`}>
           {item.title}
         </h3>
 
         {variant === "feature" && item.summary && (
-          <p className="mt-2 max-w-2xl text-sm text-zinc-300">{item.summary}</p>
+          <p className="mt-2 max-w-2xl text-sm" style={{ color: '#9AB0B8' }}>{item.summary}</p>
         )}
 
-        <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-zinc-400">
+        <div className="mt-3 flex flex-wrap items-center gap-4 text-xs" style={{ color: '#9AB0B8' }}>
           <span className="inline-flex items-center gap-1">
             <CalendarIcon className="h-4 w-4" />
             {item.date}
@@ -140,15 +149,15 @@ function BentoCard({
 
 function gradientClass(category: string) {
   if (category.includes("Ministerial"))
-    return "bg-[radial-gradient(900px_600px_at_20%_-10%,rgba(14,165,233,.35),transparent)]";
+    return "";
   if (category.includes("Academic"))
-    return "bg-[radial-gradient(900px_600px_at_80%_-10%,rgba(59,130,246,.35),transparent)]";
+    return "";
   if (category.includes("Government"))
-    return "bg-[radial-gradient(900px_600px_at_50%_-10%,rgba(2,132,199,.35),transparent)]";
+    return "";
   if (category.includes("Student"))
-    return "bg-[radial-gradient(900px_600px_at_80%_-10%,rgba(34,197,94,.35),transparent)]";
+    return "";
   if (category.includes("Talent"))
-    return "bg-[radial-gradient(900px_600px_at_20%_-10%,rgba(236,72,153,.35),transparent)]";
+    return "";
   return "";
 }
 

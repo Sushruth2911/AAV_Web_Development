@@ -203,7 +203,7 @@ const CardNav: React.FC<CardNavProps> = ({
           </div>
 
           <Link href="/" className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none hover:opacity-90 transition-opacity">
-            <Image src={logo} alt={logoAlt || 'Logo'} width={120} height={28} className="logo h-[28px] w-auto object-contain" priority />
+            <Image src={logo} alt={logoAlt || 'Logo'} width={200} height={50} className="logo h-10 md:h-12 w-auto object-contain" priority />
           </Link>
 
           <Link
