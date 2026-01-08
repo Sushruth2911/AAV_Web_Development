@@ -1,0 +1,23 @@
+{
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [],
+  "rootMainFiles": [],
+  "pages": {
+    "/_app": [
+      "static/chunks/518fb_next_dist_compiled_e718eff7._.js",
+      "static/chunks/518fb_next_dist_shared_lib_2e08e546._.js",
+      "static/chunks/518fb_next_dist_client_94be12f8._.js",
+      "static/chunks/518fb_next_dist_d4768e23._.js",
+      "static/chunks/518fb_next_app_ebf79a04.js",
+      "static/chunks/[next]_entry_page-loader_ts_5dcb1d16._.js",
+      "static/chunks/518fb_react-dom_70565a9e._.js",
+      "static/chunks/518fb_b1208e51._.js",
+      "static/chunks/[root-of-the-server]__cfc50449._.js",
+      "static/chunks/Desktop_AAV_WD_New_AAV_Web_Development_aavwebsite_pages__app_2da965e7._.js",
+      "static/chunks/turbopack-Desktop_AAV_WD_New_AAV_Web_Development_aavwebsite_pages__app_c8805774._.js"
+    ]
+  },
+  "ampFirstPages": []
+}
