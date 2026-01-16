@@ -35,4 +35,3 @@ export default function JourneyTimelineCard(props: {
         </div>
     );
 }
-s;
