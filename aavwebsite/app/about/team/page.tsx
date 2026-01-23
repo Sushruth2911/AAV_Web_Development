@@ -112,11 +112,10 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
   const hasPhoto = member.photo && !imageError;
 
   return (
-    <div className="group bg-[#181818] border border-[#1e1e1e] rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-white/20 flex flex-col items-center text-center">
+    <div className="group bg-[#181818] border border-[#1e1e1e] rounded-lg p-4 md:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 flex flex-col items-center text-center">
       {/* Avatar */}
       <div className="relative mb-4">
-        <div className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300" style={{ backgroundColor: '#3652A4' }} />
-        <div className="relative w-24 h-24 rounded-full overflow-hidden ring-2 bg-[#1e1e1e]" style={{ ringColor: '#1e1e1e' }}>
+        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden bg-[#1e1e1e]">
           {hasPhoto ? (
             <Image
               src={`/Team/${member.photo}`}
@@ -128,7 +127,7 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #3652A4, #00824E)' }}>
-              <span className="text-xl font-extrabold text-white">
+              <span className="text-lg md:text-xl font-bold text-white">
                 {getInitials(member.name)}
               </span>
             </div>
@@ -137,10 +136,10 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
       </div>
 
       {/* Name + Role */}
-      <h3 className="text-lg font-semibold mb-1 text-white">
+      <h3 className="text-base md:text-lg font-semibold mb-1 text-white">
         {member.name}
       </h3>
-      <p className="text-sm font-medium" style={{ color: '#3652A4' }}>
+      <p className="text-sm text-gray-300">
         {member.role}
       </p>
     </div>
@@ -164,45 +163,23 @@ export default function TeamPage() {
       <Navbar />
 
       <main className="min-h-screen bg-[#121212] text-white font-sans">
-        <div className="relative pt-32 pb-20">
-          {/* Glowing blobs */}
-          <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div className="absolute -top-24 -left-32 h-72 w-72 rounded-full blur-3xl opacity-20" style={{ backgroundColor: 'rgba(54,82,164,0.3)' }} />
-            <div className="absolute top-40 -right-24 h-72 w-72 rounded-full blur-3xl opacity-15" style={{ backgroundColor: 'rgba(0,130,78,0.2)' }} />
-          </div>
-
-          <div className="relative max-w-7xl mx-auto px-4 md:px-6 lg:px-0">
+        <div className="relative pt-24 pb-20">
+          <div className="relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
             {/* Back link */}
             <Link
               href="/"
-              className="inline-flex items-center text-sm mb-6 hover:underline transition-colors"
-              style={{ color: '#9AB0B8' }}
+              className="inline-flex items-center text-sm mb-8 md:mb-12 text-gray-400 hover:text-white transition-colors"
             >
               ← Back to Home
             </Link>
 
             {/* HERO SECTION */}
-            <section className="text-center mb-12">
-              <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-medium mb-4 backdrop-blur-md shadow-sm" style={{ color: '#9AB0B8' }}>
-                <span className="text-sm">👥</span>
+            <section className="text-center mb-16 md:mb-24">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 uppercase tracking-tight">
                 Our Team
-              </span>
-
-              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
-                Meet the Innovators
-                <br />
-                Behind{" "}
-                <span 
-                  className="bg-clip-text text-transparent"
-                  style={{ 
-                    backgroundImage: 'linear-gradient(to right, #3652A4, #00824E)'
-                  }}
-                >
-                  Our Success
-                </span>
               </h1>
 
-              <p className="max-w-2xl mx-auto text-base md:text-lg" style={{ color: '#9AB0B8' }}>
+              <p className="max-w-2xl mx-auto text-base md:text-lg text-gray-300">
                 A diverse team of passionate experts driving innovation in
                 autonomous maritime systems and shaping the future of ocean
                 technology.
@@ -210,8 +187,8 @@ export default function TeamPage() {
             </section>
 
             {/* TABS */}
-            <section className="mb-12">
-              <div className="flex justify-center gap-4 border-b" style={{ borderColor: '#1e1e1e' }}>
+            <section className="mb-12 md:mb-16">
+              <div className="flex justify-center gap-4 border-b border-[#1e1e1e]">
                 <button
                   onClick={() => setActiveTab("2025/26")}
                   className={`px-6 py-3 text-sm font-semibold transition-all duration-300 relative ${
@@ -229,15 +206,15 @@ export default function TeamPage() {
 
             {/* TEAM CONTENT */}
             {activeTab === "2025/26" && (
-              <div className="space-y-16">
+              <div className="space-y-20 md:space-y-24">
                 {/* Team Photo */}
                 <section>
-                  <div className="text-center mb-8">
-                    <h2 className="text-3xl md:text-4xl font-extrabold mb-3 text-white">
+                  <div className="text-center mb-8 md:mb-12">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 uppercase tracking-tight">
                       Team Photo
                     </h2>
                   </div>
-                  <div className="relative w-full rounded-3xl overflow-hidden border border-[#1e1e1e] bg-[#181818] shadow-lg">
+                  <div className="relative w-full rounded-lg overflow-hidden border border-[#1e1e1e] bg-[#181818]">
                     <div className="relative aspect-video w-full">
                       <Image
                         src="/Team/1. Team Photo.png"
@@ -250,25 +227,26 @@ export default function TeamPage() {
                 </section>
 
                 {/* Group Sections */}
-                {groupOrder.map((groupName) => {
+                {groupOrder.map((groupName, groupIndex) => {
                   const members = groupedMembers[groupName] || [];
                   if (members.length === 0) return null;
 
                   return (
-                    <section key={groupName} className="mb-16">
-                      <div className="mb-8">
-                        <h2 className="text-2xl md:text-3xl font-extrabold mb-2 text-white">
-                          {groupName}
-                        </h2>
-                        <div className="h-1 w-20 rounded-full" style={{ backgroundColor: '#3652A4' }}></div>
-                      </div>
+                    <div key={groupName}>
+                      <section className="mb-12 md:mb-16">
+                        <div className="mb-8 md:mb-12">
+                          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 uppercase tracking-tight">
+                            {groupName}
+                          </h2>
+                        </div>
 
-                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                        {members.map((member, index) => (
-                          <TeamMemberCard key={`${member.name}-${index}`} member={member} />
-                        ))}
-                      </div>
-                    </section>
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+                          {members.map((member, index) => (
+                            <TeamMemberCard key={`${member.name}-${index}`} member={member} />
+                          ))}
+                        </div>
+                      </section>
+                    </div>
                   );
                 })}
               </div>
