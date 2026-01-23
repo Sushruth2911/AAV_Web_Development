@@ -254,7 +254,7 @@ export default function Navbar() {
         {/* Bigger logo */}
         <Link href="/" className="flex items-center hover:opacity-90">
           <Image
-            src="/aavlogo.jpg"
+            src="/aavlogo.png"
             alt="AAV Logo"
             width={220}
             height={70}
