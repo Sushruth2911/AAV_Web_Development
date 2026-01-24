@@ -314,7 +314,7 @@ export default function Home() {
               </div>
             </Link>
             <Link
-              href="/competitions/robotx"
+              href="/competitions/robotx2024"
               className="group relative min-h-[350px] md:min-h-[450px] flex flex-col justify-center items-start p-8 md:p-12 overflow-hidden cursor-pointer"
             >
               <Image
