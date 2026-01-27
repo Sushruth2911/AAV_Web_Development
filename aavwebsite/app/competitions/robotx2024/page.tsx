@@ -707,7 +707,7 @@ function TimelineCard({ item, isHovered }: { item: TimelineItem; isHovered: bool
           {item.monthYear}
         </span>
       </div>
-      <p className="text-sm md:text-base text-white leading-snug">
+      <p className="text-sm md:text-base text-white leading-snug text-justify">
         {item.title}
       </p>
     </div>

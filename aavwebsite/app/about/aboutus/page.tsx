@@ -64,12 +64,6 @@ export default function AboutPage() {
           {/* Page Title */}
           <section className="relative px-4 md:px-6 lg:px-8 mb-16 md:mb-24">
             <div className="max-w-7xl mx-auto">
-              <Link
-                href="/"
-                className="inline-flex items-center text-sm mb-8 md:mb-12 text-gray-400 hover:text-white transition-colors"
-              >
-                ← Back to Home
-              </Link>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 uppercase tracking-tight text-center">
                 Our Team
               </h1>
@@ -91,13 +85,13 @@ export default function AboutPage() {
 
                   {/* Caption Text */}
                   <div className="space-y-6 text-base md:text-lg text-gray-300 leading-relaxed">
-                    <p>
+                    <p className="text-justify">
                       Archimedes is a team of innovators dedicated to shaping the future of autonomous systems. We design and build intelligent maritime vehicles that can operate both on water and in the air, executing complex missions with full autonomy.
                     </p>
-                    <p>
+                    <p className="text-justify">
                       Our focus is on developing robust and reliable autonomous systems capable of adapting to dynamic and challenging environments. Leveraging advanced sensor suites and high-performance actuators, we strive to achieve seamless navigation, perception, and decision-making without human intervention.
                     </p>
-                    <p>
+                    <p className="text-justify">
                       Given the multidisciplinary nature of autonomous systems, our team brings together talents from diverse fields — including Mechanical Engineering, Electrical Engineering, Computer Engineering, Computer Science, Aerospace Engineering, Mathematical Sciences, Communication Studies, Design Art, Economics, and Media Art. This fusion of expertise enables us to tackle complex technical challenges while delivering innovative and elegant solutions.
                     </p>
                   </div>
@@ -135,16 +129,16 @@ export default function AboutPage() {
 
                 {/* Right Side - Text */}
                 <div className="space-y-6 md:space-y-8 text-base md:text-lg text-gray-300 leading-relaxed order-1 lg:order-2">
-                  <p>
+                  <p className="text-justify">
                     Archimedes was established in 2012 following an invitation from Singapore's Ministry of Defence (MINDEF), specifically the Future Technology Systems Directorate (FSTD), to participate in the inaugural Maritime RobotX Challenge — an international competition focused on advancing autonomous maritime systems.
                   </p>
-                  <p>
+                  <p className="text-justify">
                     Over the years, our team has evolved through several iterations. We were initially known as Leviathan (2014) and later as Osmind (2018). From 2016 to 2022, we competed under the name Singaboat. In 2024, we adopted our current name, Archimedes Autonomous Vehicles, paying tribute to the Greek mathematician who discovered the principle of buoyancy — a name that more accurately reflects our focus on autonomous maritime technologies.
                   </p>
-                  <p>
+                  <p className="text-justify">
                     Since then, Archimedes has undergone a significant transformation, evolving from a project-based initiative into a full-fledged student club open to all students in Nanyang Technological University. This shift has allowed us to broaden our talent pool, foster cross-disciplinary collaboration, and build a stronger foundation for future innovation.
                   </p>
-                  <p>
+                  <p className="text-justify">
                     From a small group of dedicated pioneers, we have grown from 14 members in 2024 to 45 members in 2025, reflecting our expanding capabilities and ambition.
                 </p>
               </div>
@@ -209,13 +203,13 @@ export default function AboutPage() {
             </div>
 
                   <div className="space-y-6 text-base md:text-lg text-gray-300 leading-relaxed">
-                    <p>
+                    <p className="text-justify">
                       Launched in 2012 by the U.S. Office of Naval Research (ONR) in collaboration with Singapore's Future Technology Systems Directorate (FSTD), RobotX is an advanced robotics competition that brings together top teams from around the Pacific Rim. The competition focuses on the development of Autonomous Surface Vehicles (ASVs) and sensor technologies capable of performing complex tasks in dynamic maritime environments.
                     </p>
-                    <p>
+                    <p className="text-justify">
                       Beyond the competition, RobotX serves as a platform to foster international collaboration between students, academic institutions, government agencies, and industry partners. It bridges research, commercial innovation, and defence applications, ensuring that solutions developed are both cutting-edge and practically relevant.
                     </p>
-                    <p>
+                    <p className="text-justify">
                       Archimedes competes in the biennial RobotX Challenge, showcasing our capabilities in multi-domain robotics — operating on the surface, underwater, and in the air. In the 2024 edition, we achieved a 5th place finish and are now striving for a podium position in 2026.
               </p>
             </div>
@@ -238,13 +232,13 @@ export default function AboutPage() {
             </div>
 
                   <div className="space-y-6 text-base md:text-lg text-gray-300 leading-relaxed">
-                    <p>
+                    <p className="text-justify">
                       The Student Unmanned Aerial Systems (SUAS) Competition is an international competition organised by RoboNation, challenging university teams to design, build, and operate Unmanned Aerial Systems (UAS) capable of autonomous aerial missions.
                     </p>
-                    <p>
+                    <p className="text-justify">
                       Since its inception in 2002, SUAS has tested students' ability to integrate airframes, avionics, sensors, and software to accomplish a set of mission-critical tasks. These tasks include Autonomous Flight, Obstacle Avoidance, Object Detection, Classification, and Localisation, as well as Precision Air Delivery of payloads.
                     </p>
-                    <p>
+                    <p className="text-justify">
                       Following RobotX 2024, Archimedes is expanding beyond surface autonomy into aerial domains, with our participation in SUAS 2025 marking a strategic step forward. As UAVs and UAS technologies become increasingly vital in maritime, defence, and commercial operations, our team is committed to developing advanced aerial autonomy solutions that complement our maritime expertise.
               </p>
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/navbar";
 
 // Social Media Icons
@@ -23,6 +23,16 @@ const YouTubeIcon = ({ className }: { className?: string }) => (
 );
 
 const ContactPage = () => {
+  // Email obfuscation - split into parts to avoid bot scraping
+  const emailParts = ['contact', '@', 'ntuarchimedes', '.', 'org'];
+  
+  const handleEmailClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    // Reconstruct email only when clicked
+    const email = emailParts.join('');
+    window.location.href = `mailto:${email}`;
+  };
+
   return (
     <>
       <Navbar />
@@ -74,7 +84,7 @@ const ContactPage = () => {
           <div className="space-y-6 p-8 bg-[#181818] border border-[#1e1e1e] rounded-2xl shadow-lg hover:shadow-2xl hover:border-white/20 transition-all duration-300">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-semibold mb-3 text-white">Send Us a Message</h2>
-              <p className="text-sm" style={{ color: '#9AB0B8' }}>
+              <p className="text-sm text-justify" style={{ color: '#9AB0B8' }}>
                 Have a question or want to collaborate? Fill out the form, and we&apos;ll respond within 24 hours.
               </p>
             </div>
@@ -159,12 +169,15 @@ const ContactPage = () => {
           <div className="space-y-6 p-8 bg-[#181818] border border-[#1e1e1e] rounded-2xl shadow-lg hover:shadow-2xl hover:border-white/20 transition-all duration-300">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-semibold mb-3 text-white">Contact Information</h2>
-              <p className="text-sm" style={{ color: '#9AB0B8' }}>
+              <p className="text-sm text-justify" style={{ color: '#9AB0B8' }}>
                 Reach out for sponsorship, collaboration, outreach programs, or to join our team. We typically respond within 24-48 hours.
               </p>
             </div>
             {/* Email */}
-            <a href="mailto:contact@ntuarchimedes.org" className="contact-item flex items-center gap-4 p-5 bg-[#1e1e1e] border border-[#2a2a2a] rounded-xl hover:border-[#3652A4]/50 hover:bg-[#252525] transition-all duration-300 group cursor-pointer">
+            <button 
+              onClick={handleEmailClick}
+              className="contact-item w-full flex items-center gap-4 p-5 bg-[#1e1e1e] border border-[#2a2a2a] rounded-xl hover:border-[#3652A4]/50 hover:bg-[#252525] transition-all duration-300 group cursor-pointer text-left"
+            >
               <div className="w-12 h-12 text-white flex items-center justify-center rounded-xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#3652A4' }}>
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -172,21 +185,12 @@ const ContactPage = () => {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-xs uppercase tracking-wide mb-1" style={{ color: '#9AB0B8' }}>Email</div>
-                <div className="font-medium text-white truncate">contact@ntuarchimedes.org</div>
+                <div className="font-medium text-white">Send us an email</div>
               </div>
-            </a>
-            {/* Phone */}
-            <a href="tel:+6567904321" className="contact-item flex items-center gap-4 p-5 bg-[#1e1e1e] border border-[#2a2a2a] rounded-xl hover:border-[#3652A4]/50 hover:bg-[#252525] transition-all duration-300 group cursor-pointer">
-              <div className="w-12 h-12 text-white flex items-center justify-center rounded-xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#3652A4' }}>
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-xs uppercase tracking-wide mb-1" style={{ color: '#9AB0B8' }}>Phone</div>
-                <div className="font-medium text-white">+65 6790 4321</div>
-              </div>
-            </a>
+              <svg className="w-5 h-5 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ color: '#3652A4' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
             {/* Location */}
             <div className="contact-item flex items-center gap-4 p-5 bg-[#1e1e1e] border border-[#2a2a2a] rounded-xl hover:border-[#3652A4]/50 hover:bg-[#252525] transition-all duration-300 group">
               <div className="w-12 h-12 text-white flex items-center justify-center rounded-xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#3652A4' }}>

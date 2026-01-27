@@ -55,14 +55,6 @@ export default function AchievementsPage() {
       <main className="min-h-screen bg-[#121212] text-white font-sans">
         <div className="pt-24 pb-20">
           <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-            {/* Back link */}
-            <Link
-              href="/"
-              className="inline-flex items-center text-sm mb-8 md:mb-12 text-gray-400 hover:text-white transition-colors"
-            >
-              ← Back to Home
-            </Link>
-
             {/* Section 1: Maritime RobotX Challenge 2024 */}
             <section className="mb-20 md:mb-32">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 text-center uppercase tracking-tight">
@@ -157,7 +149,7 @@ export default function AchievementsPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-start">
                 {/* Left Side - Caption */}
                 <div className="space-y-6 text-base md:text-lg text-gray-300 leading-relaxed">
-                  <p>
+                  <p className="text-justify">
                     VRX is the simulation-based counterpart to the Maritime RobotX Challenge, designed to introduce students to autonomous maritime systems through a Gazebo-based virtual environment. Organised by RoboNation in collaboration with the U.S. Office of Naval Research (ONR), Naval Postgraduate School (NPS), and Open Robotics (OR), VRX provides an open-source platform for teams to design, test, and refine autonomous surface vehicle solutions — entirely in simulation.
                   </p>
                   <p>

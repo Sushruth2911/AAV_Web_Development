@@ -144,40 +144,6 @@ export default function ComingSoonPage() {
               />
             </div>
 
-            {/* Enhanced Back Button */}
-            <div className={`animate-slide-up flex justify-center`} style={{ animationDelay: '1.2s' }}>
-              <a
-                href="/"
-                className="group inline-flex items-center gap-2 px-8 py-3 rounded-full text-sm font-semibold transition-all duration-500 backdrop-blur-md border relative overflow-hidden"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(54, 82, 164, 0.3), rgba(0, 130, 78, 0.25))',
-                  borderColor: 'rgba(255, 255, 255, 0.2)',
-                  color: '#FFFFFF',
-                  boxShadow: '0 8px 32px rgba(54, 82, 164, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(54, 82, 164, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2) inset';
-                  e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(54, 82, 164, 0.4), rgba(0, 130, 78, 0.35))';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(54, 82, 164, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset';
-                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(54, 82, 164, 0.3), rgba(0, 130, 78, 0.25))';
-                }}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span>
-                  <span>Back to Home</span>
-                </span>
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(54, 82, 164, 0.5), rgba(0, 130, 78, 0.4))',
-                  }}
-                />
-              </a>
-            </div>
           </div>
         </div>
 

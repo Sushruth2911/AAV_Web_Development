@@ -622,7 +622,7 @@ export default function Navbar() {
       bgColor: "rgba(39, 30, 55, 0.7)", // Even darker purple with transparency
       textColor: "#fff",
       links: [
-        { label: "Outreach", href: "/outreach", ariaLabel: "Outreach" },
+        { label: "Outreach & Newsroom", href: "/outreach", ariaLabel: "Outreach & Newsroom" },
         { label: "2024 Sponsors", href: "/sponsors/2024", ariaLabel: "2024 Sponsors" },
         { label: "2026 Sponsors", href: "/sponsors/2026", ariaLabel: "2026 Sponsors" }
       ]
@@ -633,7 +633,6 @@ export default function Navbar() {
       textColor: "#fff",
       links: [
         { label: "Shop", href: "/shop", ariaLabel: "Shop" },
-        { label: "Newsroom", href: "/about/news", ariaLabel: "Newsroom" },
         { label: "Contact", href: "/contact", ariaLabel: "Contact" }
       ]
     }

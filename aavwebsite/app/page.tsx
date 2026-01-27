@@ -432,7 +432,7 @@ export default function Home() {
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 uppercase tracking-tight">
                     {carouselData[currentSlide].title}
                   </h2>
-                  <p className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed">
+                  <p className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed text-justify">
                     {carouselData[currentSlide].description}
                   </p>
                 </div>
@@ -607,7 +607,7 @@ export default function Home() {
 
             {/* Center - All Rights Reserved */}
             <div className="text-center md:text-left">
-              <p className="text-sm md:text-base text-gray-400">
+              <p className="text-sm md:text-base text-gray-400 text-justify">
                 © {new Date().getFullYear()} Archimedes Autonomous Vehicles (AAV). All rights reserved.
               </p>
               <p className="text-xs md:text-sm text-gray-500 mt-2">

@@ -248,10 +248,10 @@ export default function Sponsors2024Page() {
                 <div className="w-24 h-1 bg-gradient-to-r from-[#3652A4] to-transparent"></div>
                 
                 <div className="space-y-4 text-base md:text-lg text-gray-300 leading-relaxed">
-                  <p>
+                  <p className="text-justify">
                     Join us in shaping the future of maritime autonomy in Singapore. Your support enables us to push the boundaries of innovation and develop cutting-edge autonomous systems that make a real impact.
                   </p>
-                  <p>
+                  <p className="text-justify">
                     As a sponsor, you'll be part of a team that's making history in autonomous maritime technology. We offer various sponsorship tiers with benefits tailored to your organization's needs.
                   </p>
                   <p className="font-semibold text-white">
