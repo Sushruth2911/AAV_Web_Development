@@ -124,22 +124,23 @@ export default function NewsPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#f5f7f9] text-slate-900">
+      <main className="min-h-screen bg-[#121212] text-white font-sans">
         {/* HERO / HEADER */}
         <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-linear-to-b from-[#f5fbff] via-[#eef4fb] to-[#f5f7f9]" />
-          <div className="absolute inset-0 opacity-60 bg-[radial-gradient(circle_at_top,#dbeafe_0,transparent_55%),radial-gradient(circle_at_bottom,#e0f2fe_0,transparent_55%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#121212] via-[#0a0a0a] to-[#121212]" />
+          <div className="absolute -left-40 top-10 h-80 w-80 rounded-full blur-3xl" style={{ backgroundColor: 'rgba(54,82,164,0.1)' }} />
+          <div className="absolute right-[-120px] top-40 h-80 w-80 rounded-full blur-3xl" style={{ backgroundColor: 'rgba(0,130,78,0.08)' }} />
 
           <div className="relative max-w-5xl mx-auto px-4 md:px-6 pt-28 pb-16 text-center">
-            <span className="inline-flex items-center px-4 py-1 rounded-full bg-white/70 backdrop-blur text-xs font-semibold text-[#008fb3] shadow-sm mb-5 border border-white/70">
+            <span className="inline-flex items-center px-4 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold shadow-sm mb-5 backdrop-blur-md" style={{ color: '#9AB0B8' }}>
               🔄 Latest Updates
             </span>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-              News &amp; <span className="text-[#008fb3]">Insights</span>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
+              News &amp; <span style={{ color: '#3652A4' }}>Insights</span>
             </h1>
 
-            <p className="max-w-3xl mx-auto text-sm md:text-base text-slate-600 mb-8 leading-relaxed">
+            <p className="max-w-3xl mx-auto text-sm md:text-base text-gray-400 mb-8 leading-relaxed">
               Stay updated with our latest breakthroughs, competition wins, and
               behind-the-scenes stories from the world of autonomous maritime
               systems.
@@ -147,14 +148,14 @@ export default function NewsPage() {
 
             {/* Search bar */}
             <div className="max-w-xl mx-auto mb-10">
-              <div className="flex items-center bg-white/90 backdrop-blur rounded-full px-4 py-2 shadow-[0_14px_40px_rgba(15,23,42,0.12)] border border-slate-100">
-                <span className="text-slate-400 mr-2">🔍</span>
+              <div className="flex items-center bg-[#181818] border border-[#1e1e1e] rounded-full px-4 py-2 hover:border-white/20 transition-all">
+                <span className="mr-2" style={{ color: '#9AB0B8' }}>🔍</span>
                 <input
                   type="text"
                   placeholder="Search articles..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className="flex-1 bg-transparent outline-none text-sm md:text-base text-slate-700 placeholder:text-slate-400"
+                  className="flex-1 bg-transparent outline-none text-sm md:text-base text-white placeholder:text-gray-500"
                 />
               </div>
             </div>
@@ -174,8 +175,8 @@ export default function NewsPage() {
           {featuredArticles.length > 0 && (
             <div>
               <div className="flex items-center gap-2 mb-5">
-                <span className="text-sm text-[#008fb3]">📈</span>
-                <h2 className="text-2xl md:text-3xl font-extrabold">
+                <span className="text-sm" style={{ color: '#3652A4' }}>📈</span>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-white">
                   Featured Stories
                 </h2>
               </div>
@@ -190,12 +191,12 @@ export default function NewsPage() {
 
           {/* ALL ARTICLES */}
           <div className="space-y-6">
-            <h2 className="text-2xl md:text-3xl font-extrabold">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-white">
               All Articles
             </h2>
 
             {nonFeaturedArticles.length === 0 && (
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-gray-400">
                 No articles found for this search term. Try something else.
               </p>
             )}
@@ -216,11 +217,11 @@ export default function NewsPage() {
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-white/90 backdrop-blur rounded-3xl px-6 py-4 border border-slate-100 shadow-sm">
-      <div className="text-2xl font-extrabold text-[#008fb3] mb-1">
+    <div className="bg-[#181818] border border-[#1e1e1e] rounded-3xl px-6 py-4 shadow-sm hover:border-white/20 transition-all">
+      <div className="text-2xl font-extrabold mb-1" style={{ color: '#3652A4' }}>
         {value}
       </div>
-      <div className="text-xs uppercase tracking-wide text-slate-500">
+      <div className="text-xs uppercase tracking-wide" style={{ color: '#9AB0B8' }}>
         {label}
       </div>
     </div>
@@ -239,19 +240,18 @@ interface Article {
 
 function FeaturedCard({ article }: { article: Article }) {
   return (
-    <article className="bg-white rounded-3xl overflow-hidden shadow-[0_18px_45px_rgba(15,23,42,0.18)] border border-slate-200 hover:shadow-[0_26px_60px_rgba(15,23,42,0.22)] hover:-translate-y-1.5 transition-all duration-200 flex flex-col">
-      {/* “Image” area – gradient placeholder */}
-      <div className="relative h-56 overflow-hidden">
-        <div className="absolute inset-0 bg-linear-to-br from-sky-500 via-sky-700 to-slate-900 opacity-90" />
-        <div className="absolute inset-0 mix-blend-screen bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.3)_0,transparent_60%)]" />
+    <article className="bg-[#181818] border border-[#1e1e1e] rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1.5 hover:border-white/20 transition-all duration-200 flex flex-col">
+      {/* "Image" area – gradient placeholder */}
+      <div className="relative h-56 overflow-hidden bg-gradient-to-br from-[#181818] to-[#0a0a0a]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#3652A4]/20 via-[#00824E]/15 to-transparent" />
         <div className="relative z-10 flex flex-col justify-end h-full px-6 pb-5">
-          <span className="inline-flex w-fit px-3 py-1 rounded-full bg-black/40 text-[11px] font-semibold text-white mb-2">
+          <span className="inline-flex w-fit px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] font-semibold text-white mb-2 backdrop-blur-md">
             {article.category}
           </span>
           <h3 className="text-lg md:text-xl font-semibold text-white mb-1">
             {article.title}
           </h3>
-          <div className="flex items-center gap-4 text-xs text-slate-100/90">
+          <div className="flex items-center gap-4 text-xs" style={{ color: '#9AB0B8' }}>
             <span>{article.date}</span>
             <span>•</span>
             <span>{article.readTime}</span>
@@ -259,7 +259,7 @@ function FeaturedCard({ article }: { article: Article }) {
         </div>
 
         <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 rounded-full bg-white/90 text-[11px] font-semibold text-[#008fb3] shadow">
+          <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] font-semibold backdrop-blur-md" style={{ color: '#3652A4' }}>
             Featured
           </span>
         </div>
@@ -267,7 +267,7 @@ function FeaturedCard({ article }: { article: Article }) {
 
       {/* Summary */}
       <div className="px-6 py-4">
-        <p className="text-sm text-slate-600">{article.summary}</p>
+        <p className="text-sm text-gray-400">{article.summary}</p>
       </div>
     </article>
   );
@@ -275,28 +275,26 @@ function FeaturedCard({ article }: { article: Article }) {
 
 function ArticleCard({ article }: { article: Article }) {
   return (
-    <article className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col">
+    <article className="bg-[#181818] border border-[#1e1e1e] rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-white/20 transition-all duration-200 flex flex-col">
       {/* gradient placeholder for image */}
-      <div className="h-40 bg-linear-to-br from-slate-100 via-sky-100 to-slate-200" />
+      <div className="h-40 bg-gradient-to-br from-[#181818] to-[#0a0a0a]" />
 
       <div className="px-6 py-5 flex flex-col flex-1">
-        <span className="inline-flex w-fit px-3 py-1 rounded-full bg-[#e6f7fa] text-[11px] font-semibold text-[#008fb3] mb-3">
+        <span className="inline-flex w-fit px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] font-semibold mb-3 backdrop-blur-md" style={{ color: '#9AB0B8' }}>
           {article.category}
         </span>
-        <h3 className="text-base md:text-lg font-semibold mb-2">
+        <h3 className="text-base md:text-lg font-semibold mb-2 text-white">
           {article.title}
         </h3>
-        <p className="text-sm text-slate-600 mb-4 flex-1">
+        <p className="text-sm text-gray-400 mb-4 flex-1">
           {article.summary}
         </p>
-        <div className="flex items-center gap-3 text-xs text-slate-500 border-t border-slate-100 pt-3">
+        <div className="flex items-center gap-3 text-xs border-t pt-3" style={{ color: '#9AB0B8', borderColor: '#1e1e1e' }}>
           <span>📅 {article.date}</span>
           <span>•</span>
           <span>⏱ {article.readTime}</span>
         </div>
       </div>
-
-      <div className="h-1 bg-linear-to-r from-[#008fb3] via-[#38bdf8] to-transparent" />
     </article>
   );
 }

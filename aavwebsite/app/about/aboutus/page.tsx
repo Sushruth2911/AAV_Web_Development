@@ -1,237 +1,313 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import Navbar from "@/components/navbar";
+import Image from "next/image";
+import { useEffect, useState, useRef } from "react";
 
-const originMilestones = [
-  { year: "2014", location: "Singapore" },
-  { year: "2016", location: "Hawaii, USA" },
-  { year: "2018", location: "Hawaii, USA" },
-  { year: "2020", location: "COVID-19" },
-  { year: "2022", location: "Sydney, Australia" },
-  { year: "2024", location: "Florida, USA" },
-];
+type Competition = {
+  year: number;
+  competition: string;
+  city: string;
+  location: [number, number] | null;
+  isVirtual: boolean;
+  flag: string;
+};
 
-const newsItems = [
-  {
-    tag: "Planning",
-    title: "Successfully Tested New Navigation System in Open Waters",
-    date: "March 15, 2025",
-    summary:
-      "Completed full-scale field tests of the enhanced autonomous navigation system with robust performance under real sea conditions.",
-  },
-  {
-    tag: "Perception",
-    title: "Perception Module Achieves 95% Object Detection Accuracy",
-    date: "March 10, 2025",
-    summary:
-      "Latest improvements to our computer vision pipeline deliver highly reliable detection of buoys and obstacles in challenging environments.",
-  },
-  {
-    tag: "Communication",
-    title: "New Communication Protocol Reduces Latency by 40%",
-    date: "March 5, 2025",
-    summary:
-      "A custom ROS-based protocol now provides faster, more resilient communication between onboard modules and the base station.",
-  },
-];
-
-const timelineEvents = [
-  { year: "2014", competition: "RobotX", location: "Singapore" },
-  { year: "2016", competition: "RobotX", location: "Hawaii, USA" },
-  { year: "2018", competition: "RobotX", location: "Hawaii, USA" },
-  { year: "2022", competition: "RobotX", location: "Sydney, Australia" },
-  { year: "2022", competition: "VRX Competition", location: "Virtual" },
-  { year: "2023", competition: "VRX Competition", location: "Virtual" },
-  { year: "2024", competition: "RobotX", location: "Florida, USA" },
-  { year: "2025", competition: "SUAS", location: "Maryland, USA" },
-  { year: "2026", competition: "RobotX", location: "Singapore" },
+const competitions: Competition[] = [
+  { year: 2014, competition: "RobotX", city: "Singapore", location: [1.3521, 103.8198], isVirtual: false, flag: "🇸🇬" },
+  { year: 2016, competition: "RobotX", city: "Hawaii, USA", location: [21.3099, -157.8581], isVirtual: false, flag: "🇺🇸" },
+  { year: 2018, competition: "RobotX", city: "Hawaii, USA", location: [21.3099, -157.8581], isVirtual: false, flag: "🇺🇸" },
+  { year: 2022, competition: "RobotX", city: "Sydney, Australia", location: [-33.8688, 151.2093], isVirtual: false, flag: "🇦🇺" },
+  { year: 2022, competition: "VRX Competition", city: "Virtual", location: null, isVirtual: true, flag: "🌐" },
+  { year: 2023, competition: "VRX Competition", city: "Virtual", location: null, isVirtual: true, flag: "🌐" },
+  { year: 2024, competition: "RobotX", city: "Florida, USA", location: [27.7663, -82.6404], isVirtual: false, flag: "🇺🇸" },
+  { year: 2025, competition: "SUAS", city: "Maryland, USA", location: [39.0458, -76.6413], isVirtual: false, flag: "🇺🇸" },
+  { year: 2026, competition: "RobotX", city: "Singapore", location: [1.3521, 103.8198], isVirtual: false, flag: "🇸🇬" },
 ];
 
 export default function AboutPage() {
+  const [isVisible, setIsVisible] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => {
+      if (statsRef.current) {
+        observer.unobserve(statsRef.current);
+      }
+    };
+  }, [hasAnimated]);
+
   return (
     <>
       <Navbar />
-
-      <main className="min-h-screen bg-[#f5f7f9] text-slate-900">
-        <div className="pt-28 pb-20">
-          {/* HERO */}
-          <section className="relative overflow-hidden">
-            <div className="absolute inset-0 bg-linear-to-b from-[#f5fbff] via-[#f6fbfd] to-[#f5f7f9]" />
-            <div className="absolute -left-40 top-10 h-80 w-80 rounded-full bg-[#b6e9f5]/40 blur-3xl" />
-            <div className="absolute right-[-120px] top-40 h-80 w-80 rounded-full bg-[#b6e9f5]/40 blur-3xl" />
-
-            <div className="relative max-w-5xl mx-auto px-4 md:px-6 text-center pb-16">
-              <span className="inline-flex items-center px-4 py-1 rounded-full bg-[#e6f7fa] text-xs font-semibold text-[#008fb3] shadow-sm mb-6">
-                🛟 Est. 2024
-              </span>
-
-              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
-                About
-                <br />
-                <span className="text-[#008fb3]">Our Team</span>
+      <main className="min-h-screen bg-[#121212] text-white font-sans">
+        <div className="pt-24 pb-20">
+          {/* Page Title */}
+          <section className="relative px-4 md:px-6 lg:px-8 mb-16 md:mb-24">
+            <div className="max-w-7xl mx-auto">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 uppercase tracking-tight text-center">
+                Our Team
               </h1>
+            </div>
+          </section>
 
-              <p className="max-w-3xl mx-auto text-sm md:text-base text-slate-600 mb-10">
-                Pioneering autonomous maritime systems through innovation,
-                collaboration, and dedication to excellence.
-              </p>
+          {/* Section 1: Stats and Description */}
+          <section className="relative px-4 md:px-6 lg:px-8 mb-20 md:mb-32">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+                {/* Left Side - Stats and Text */}
+                <div>
+                  {/* Stats */}
+                  <div ref={statsRef} className="grid grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+                    <AnimatedStat target={45} label="Members" suffix="" />
+                    <AnimatedStat target={10} label="Years of History" suffix="+" />
+                    <AnimatedStat target={7} label="Countries" suffix="" />
+            </div>
 
-              {/* stats row */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-10 md:gap-20">
-                <Stat value="32" label="Team Members" />
-                <Stat value="10+" label="Years of History" />
-                <Stat value="7" label="Countries" />
+                  {/* Caption Text */}
+                  <div className="space-y-6 text-base md:text-lg text-gray-300 leading-relaxed">
+                    <p className="text-justify">
+                      Archimedes is a team of innovators dedicated to shaping the future of autonomous systems. We design and build intelligent maritime vehicles that can operate both on water and in the air, executing complex missions with full autonomy.
+                    </p>
+                    <p className="text-justify">
+                      Our focus is on developing robust and reliable autonomous systems capable of adapting to dynamic and challenging environments. Leveraging advanced sensor suites and high-performance actuators, we strive to achieve seamless navigation, perception, and decision-making without human intervention.
+                    </p>
+                    <p className="text-justify">
+                      Given the multidisciplinary nature of autonomous systems, our team brings together talents from diverse fields — including Mechanical Engineering, Electrical Engineering, Computer Engineering, Computer Science, Aerospace Engineering, Mathematical Sciences, Communication Studies, Design Art, Economics, and Media Art. This fusion of expertise enables us to tackle complex technical challenges while delivering innovative and elegant solutions.
+                    </p>
+                  </div>
               </div>
 
-              <div className="mt-10 text-xs uppercase tracking-[0.25em] text-slate-500 flex flex-col items-center gap-1">
-                <span>Scroll to explore</span>
-                <span className="text-lg">↓</span>
+                {/* Right Side - Image */}
+                <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden">
+                  <Image
+                    src="/About Us/about_us_s1.png"
+                    alt="Archimedes Autonomous Vehicles Team"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  </div>
               </div>
             </div>
           </section>
 
-          {/* ORIGIN STORY + TIMELINE */}
-          <section className="max-w-6xl mx-auto px-4 md:px-6 mb-16">
-            <div className="grid gap-10 md:grid-cols-[1.4fr,1fr] items-start">
-              <div>
-                <span className="inline-flex items-center px-4 py-1 rounded-full bg-[#e6f7fa] text-xs font-semibold text-[#008fb3] shadow-sm mb-4">
-                  🧭 Our Origin
-                </span>
-                <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
-                  NTU's History
-                </h2>
-                 <div className="space-y-6">
-              {timelineEvents.map((event, index) => (
-                <div
-                  key={index}
-                  className="flex gap-6 items-start"
-                >
-                  {/* Timeline dot and line */}
-                  <div className="flex flex-col items-center">
-                    <div className="w-4 h-4 bg-[#008fb3] rounded-full mt-2" />
-                    {index !== timelineEvents.length - 1 && (
-                      <div className="w-1 h-20 bg-gradient-to-b from-[#008fb3] to-[#008fb3]/30 my-2" />
-                    )}
+          {/* Section 2: History with Image */}
+          <section className="relative px-4 md:px-6 lg:px-8 mb-20 md:mb-32">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+                {/* Left Side - Image */}
+                <div className="relative w-full aspect-[4/3] md:aspect-[3/2] rounded-lg overflow-hidden order-2 lg:order-1">
+                  <Image
+                    src="/About Us/about_us_s2.png"
+                    alt="Archimedes History"
+                    fill
+                    className="object-cover"
+                    style={{ objectPosition: 'center center' }}
+                    priority
+              />
+            </div>
+
+                {/* Right Side - Text */}
+                <div className="space-y-6 md:space-y-8 text-base md:text-lg text-gray-300 leading-relaxed order-1 lg:order-2">
+                  <p className="text-justify">
+                    Archimedes was established in 2012 following an invitation from Singapore's Ministry of Defence (MINDEF), specifically the Future Technology Systems Directorate (FSTD), to participate in the inaugural Maritime RobotX Challenge — an international competition focused on advancing autonomous maritime systems.
+                  </p>
+                  <p className="text-justify">
+                    Over the years, our team has evolved through several iterations. We were initially known as Leviathan (2014) and later as Osmind (2018). From 2016 to 2022, we competed under the name Singaboat. In 2024, we adopted our current name, Archimedes Autonomous Vehicles, paying tribute to the Greek mathematician who discovered the principle of buoyancy — a name that more accurately reflects our focus on autonomous maritime technologies.
+                  </p>
+                  <p className="text-justify">
+                    Since then, Archimedes has undergone a significant transformation, evolving from a project-based initiative into a full-fledged student club open to all students in Nanyang Technological University. This shift has allowed us to broaden our talent pool, foster cross-disciplinary collaboration, and build a stronger foundation for future innovation.
+                  </p>
+                  <p className="text-justify">
+                    From a small group of dedicated pioneers, we have grown from 14 members in 2024 to 45 members in 2025, reflecting our expanding capabilities and ambition.
+                </p>
+              </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Section 3: The History */}
+          <section className="relative px-4 md:px-6 lg:px-8 mb-20 md:mb-32">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-12 md:mb-16 text-center uppercase tracking-tight">
+                The History
+              </h2>
+              
+              <div className="space-y-6">
+                {/* Competition List */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {competitions.map((comp) => (
+                    <div
+                      key={`${comp.year}-${comp.competition}`}
+                      className="bg-[#181818] border border-[#1e1e1e] rounded-lg p-5 hover:border-white/20 transition-all duration-300"
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-3xl">{comp.flag}</span>
+                        <div>
+                          <div className="text-sm text-gray-400 uppercase tracking-wide">
+                            {comp.year}
+                          </div>
+                          <div className="text-lg md:text-xl font-bold text-white">
+                            {comp.competition}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="text-base text-gray-300">
+                        {comp.city}
+                    </div>
                   </div>
-                  
-                  {/* Content */}
-                  <div className="pb-6">
-                    <h3 className="text-xl font-bold text-[#008fb3]">{event.year}</h3>
-                    <p className="text-lg font-semibold text-slate-900">{event.competition}</p>
-                    <p className="text-slate-600">{event.location}</p>
-                  </div>
+                ))}
                 </div>
-              ))}
-            </div>
               </div>
             </div>
           </section>
 
-          { /* MARITIME ROBOTX CHALLENGE SECTION */ }
-          <section className="max-w-6xl mx-auto px-4 md:px-6">
-            <div className="grid gap-10 md:grid-cols-[1fr,1.2fr] items-center">
-              {/* Text Content */}
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-10">
-                <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
-                  Maritime RobotX Challenge
-                </h2>
-                <p className="text-sm md:text-base text-slate-600 leading-relaxed">
-                  Launched in 2012 by the U.S. Office of Naval Research (ONR) in collaboration with Singapore’s Future Technology Systems Directorate (FSTD), RobotX is an advanced robotics competition that brings together top teams from around the Pacific Rim. The competition focuses
-                  on the development of Autonomous Surface Vehicles (ASVs) and sensor technologies capable of performing complex tasks in dynamic maritime environments. Beyond the competition, RobotX serves as a platform to foster international collaboration between students,
-                  academic institutions, government agencies, and industry partners. It bridges research, commercial innovation, and defence applications, ensuring that solutions developed are both cutting-edge and practically relevant. Archimedes competes in the biennial RobotX Challenge,
-                  showcasing our capabilities in multi-domain robotics — operating on the surface, underwater, and in the air. In the 2024 edition, we achieved a 5th place finish and are now striving for a podium position in 2026.
-                </p>
-              </div>
-
-              {/* Image */}
-              <div className="relative rounded-3xl overflow-hidden shadow-md">
-                <img src="/Section 4 - Maritime RobotX Challenge.jpeg" alt="RobotX Challenge" />
-              </div>
+          {/* Section 4 & 5: Competitions Side by Side */}
+          <section className="relative px-4 md:px-6 lg:px-8 mb-20 md:mb-32">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
+                {/* Section 4: RobotX */}
+                <div className="flex flex-col">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 uppercase tracking-tight min-h-[120px] md:min-h-[140px] lg:min-h-[160px] text-center">
+                    Maritime RobotX Challenge
+              </h2>
+                  
+                  <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden mb-6">
+                    <Image
+                      src="/About Us/about_us_robotx.png"
+                      alt="RobotX Competition"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
             </div>
-           </section>
 
-           { /* SUAS COMPETITION SECTION */ }
-          <section className="max-w-6xl mx-auto px-4 md:px-6">
-            <div className="grid gap-10 md:grid-cols-[1fr,1.2fr] items-center">
-              {/* Text Content */}
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-10">
-                <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
-                  SUAS Competition
-                </h2>
-                <p className="text-sm md:text-base text-slate-600 leading-relaxed">
-                   The Student Unmanned Aerial Systems (SUAS) Competition is an international competition organised by RoboNation, challenging university teams to design, build, and operate Unmanned Aerial Systems (UAS) capable of autonomous aerial missions. 
-                   Since its inception in 2002, SUAS has tested students' ability to integrate airframes, avionics, sensors, and software to accomplish a set of mission-critical tasks. These tasks include Autonomous Flight, Obstacle Avoidance, Object Detection, Classification, and Localisation, as well as Precision Air Delivery of payloads. 
-                   Following RobotX 2024, Archimedes is expanding beyond surface autonomy into aerial domains, with our participation in SUAS 2025 marking a strategic step forward. As UAVs and UAS technologies become increasingly vital in maritime, defence, and commercial operations, our team is committed to developing advanced aerial autonomy solutions that complement our maritime expertise.
-                </p>
-              </div>
-
-              {/* Image */}
-              <div className="relative rounded-3xl overflow-hidden shadow-md">
-                <img src="/4. Section 5 - SUAS.jpg" alt="SUAS Competition" />
-              </div>
+                  <div className="space-y-6 text-base md:text-lg text-gray-300 leading-relaxed">
+                    <p className="text-justify">
+                      Launched in 2012 by the U.S. Office of Naval Research (ONR) in collaboration with Singapore's Future Technology Systems Directorate (FSTD), RobotX is an advanced robotics competition that brings together top teams from around the Pacific Rim. The competition focuses on the development of Autonomous Surface Vehicles (ASVs) and sensor technologies capable of performing complex tasks in dynamic maritime environments.
+                    </p>
+                    <p className="text-justify">
+                      Beyond the competition, RobotX serves as a platform to foster international collaboration between students, academic institutions, government agencies, and industry partners. It bridges research, commercial innovation, and defence applications, ensuring that solutions developed are both cutting-edge and practically relevant.
+                    </p>
+                    <p className="text-justify">
+                      Archimedes competes in the biennial RobotX Challenge, showcasing our capabilities in multi-domain robotics — operating on the surface, underwater, and in the air. In the 2024 edition, we achieved a 5th place finish and are now striving for a podium position in 2026.
+              </p>
             </div>
-           </section>
+              </div>
 
+                {/* Section 5: SUAS */}
+                <div className="flex flex-col">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 uppercase tracking-tight min-h-[120px] md:min-h-[140px] lg:min-h-[160px] text-center">
+                    SUAS Competition
+                  </h2>
+                  
+                  <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden mb-6">
+                    <Image
+                      src="/About Us/about_us_suas.png"
+                      alt="SUAS Competition"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+            </div>
+
+                  <div className="space-y-6 text-base md:text-lg text-gray-300 leading-relaxed">
+                    <p className="text-justify">
+                      The Student Unmanned Aerial Systems (SUAS) Competition is an international competition organised by RoboNation, challenging university teams to design, build, and operate Unmanned Aerial Systems (UAS) capable of autonomous aerial missions.
+                    </p>
+                    <p className="text-justify">
+                      Since its inception in 2002, SUAS has tested students' ability to integrate airframes, avionics, sensors, and software to accomplish a set of mission-critical tasks. These tasks include Autonomous Flight, Obstacle Avoidance, Object Detection, Classification, and Localisation, as well as Precision Air Delivery of payloads.
+                    </p>
+                    <p className="text-justify">
+                      Following RobotX 2024, Archimedes is expanding beyond surface autonomy into aerial domains, with our participation in SUAS 2025 marking a strategic step forward. As UAVs and UAS technologies become increasingly vital in maritime, defence, and commercial operations, our team is committed to developing advanced aerial autonomy solutions that complement our maritime expertise.
+              </p>
+            </div>
+                </div>
+            </div>
+            </div>
+          </section>
         </div>
       </main>
     </>
   );
 }
 
-/* Small reusable pieces */
+function AnimatedStat({ target, label, suffix }: { target: number; label: string; suffix: string }) {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const statRef = useRef<HTMLDivElement>(null);
 
-function Stat({ value, label }: { value: string; label: string }) {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasStarted) {
+            setHasStarted(true);
+            animateCount();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (statRef.current) {
+      observer.observe(statRef.current);
+    }
+
+    return () => {
+      if (statRef.current) {
+        observer.unobserve(statRef.current);
+      }
+    };
+  }, [hasStarted]);
+
+  const animateCount = () => {
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const increment = target / steps;
+    const stepDuration = duration / steps;
+
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, stepDuration);
+  };
+
   return (
-    <div>
-      <div className="text-3xl md:text-4xl font-extrabold text-[#008fb3] mb-1">
-        {value}
+    <div ref={statRef} className="text-center">
+      <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
+        {hasStarted ? `${count}${suffix}` : `0${suffix}`}
       </div>
-      <div className="text-xs uppercase tracking-wide text-slate-500">
+      <div className="text-sm md:text-base text-gray-400 uppercase tracking-wide">
         {label}
       </div>
     </div>
   );
 }
 
-function QuickCard(props: {
-  icon: string;
-  title: string;
-  description: string;
-  linkLabel: string;
-  href: string;
-}) {
-  const { icon, title, description, linkLabel, href } = props;
-  return (
-    <Link
-      href={href}
-      className="block bg-white rounded-3xl border border-slate-200 shadow-sm px-6 py-6 hover:shadow-md hover:-translate-y-0.5 transition-all"
-    >
-      <div className="text-2xl mb-3">{icon}</div>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-sm text-slate-600 mb-4">{description}</p>
-      <div className="text-sm font-semibold text-[#008fb3] inline-flex items-center">
-        {linkLabel}
-        <span className="ml-1">→</span>
-      </div>
-    </Link>
-  );
-}
-
-function LevelRow(props: {
-  label: string;
-  value: string;
-  colorClass: string;
-}) {
-  const { label, value, colorClass } = props;
-  return (
-    <div className="flex items-center justify-between gap-4">
-      <div className="flex items-center gap-3">
-        <span className={`h-3 w-3 rounded-full ${colorClass}`} />
-        <span className="text-sm text-slate-700">{label}</span>
-      </div>
-      <span className="text-lg font-bold text-slate-900">{value}</span>
-    </div>
-  );
-}
