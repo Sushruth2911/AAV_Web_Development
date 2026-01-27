@@ -419,7 +419,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </Link>
 
       {/* 🎠 Image Carousel Section */}
       <section className="relative border-b border-[#1e1e1e] bg-[#121212] py-8 md:py-12">
@@ -672,5 +672,73 @@ export default function Home() {
       </footer>
       </main>
     </>
+  );
+}
+
+function CarouselCard({
+  item,
+  variant,
+  onClick,
+}: {
+  item: CarouselItem;
+  variant: "active" | "side";
+  onClick?: () => void;
+}) {
+  const isActive = variant === "active";
+
+  return (
+    <button
+      onClick={onClick}
+      className={[
+        "group relative overflow-hidden rounded-3xl border border-white/10 bg-[#181818] text-left transition-all duration-500 ease-out",
+        "focus:outline-none focus:ring-2 focus:ring-white/30",
+        isActive
+          ? "w-[78%] md:w-[520px] h-[320px] md:h-[380px] shadow-2xl"
+          : "w-[54%] md:w-[320px] h-[240px] md:h-[280px] opacity-80 hover:opacity-95",
+      ].join(" ")}
+    >
+      {/* image */}
+      <Image
+        src={item.image}
+        alt={item.title}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+        sizes={isActive ? "(max-width: 768px) 78vw, 520px" : "(max-width: 768px) 54vw, 320px"}
+        priority={isActive}
+      />
+
+      {/* overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(600px_circle_at_30%_20%,rgba(255,255,255,0.20),transparent_55%)]" />
+
+      {/* text */}
+      <div className="absolute bottom-0 left-0 right-0 p-6">
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <h4 className={`font-bold tracking-tight ${isActive ? "text-4xl" : "text-2xl"}`}>
+              {item.title}
+            </h4>
+            {item.subtitle ? (
+              <p className={`mt-1 text-white/75 ${isActive ? "text-base" : "text-sm"}`}>
+                {item.subtitle}
+              </p>
+            ) : null}
+          </div>
+
+          <span
+            className={[
+              "inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/85 backdrop-blur transition",
+              isActive ? "opacity-100" : "opacity-0 md:opacity-70",
+            ].join(" ")}
+          >
+            View
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </span>
+        </div>
+      </div>
+    </button>
+
   );
 }
